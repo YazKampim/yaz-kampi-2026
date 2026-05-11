@@ -321,12 +321,12 @@ hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0;
       </div>
       <div class="field">
         <label>Baba İletişim No <span class="req">*</span></label>
-        <input type="tel" id="baba-tel" placeholder="(0541) 851 15 51" maxlength="15" oninput="formatTel(this)">
+        <input type="tel" id="baba-tel" placeholder="(0541) 851 15 51" maxlength="16" oninput="formatTel(this)" onfocus="initTel(this)">
         <div class="err-msg" id="err-baba">⚠️ Telefon numarası boş bırakılamaz.</div>
       </div>
       <div class="field">
         <label>Anne İletişim No <span class="req">*</span></label>
-        <input type="tel" id="anne-tel" placeholder="(0541) 851 15 51" maxlength="15" oninput="formatTel(this)">
+        <input type="tel" id="anne-tel" placeholder="(0541) 851 15 51" maxlength="16" oninput="formatTel(this)" onfocus="initTel(this)">
         <div class="err-msg" id="err-anne">⚠️ Telefon numarası boş bırakılamaz.</div>
       </div>
       <div class="field">
@@ -366,20 +366,20 @@ hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0;
 
 <script>
 function formatTel(input){
-  var digits = input.value.replace(/\D/g,'');
+  var digits = input.value.replace(/[^0-9]/g,'');
+  if(digits.length === 0){ input.value = '(0'; return; }
   if(!digits.startsWith('0')) digits = '0' + digits;
-  digits = digits.substring(0,11);
+  if(digits.length > 11) digits = digits.substring(0,11);
   var result = '';
-  if(digits.length <= 4) {
-    result = '(' + digits;
-  } else if(digits.length <= 7) {
-    result = '(' + digits.substring(0,4) + ') ' + digits.substring(4);
-  } else if(digits.length <= 9) {
-    result = '(' + digits.substring(0,4) + ') ' + digits.substring(4,7) + ' ' + digits.substring(7);
-  } else {
-    result = '(' + digits.substring(0,4) + ') ' + digits.substring(4,7) + ' ' + digits.substring(7,9) + ' ' + digits.substring(9,11);
-  }
+  if(digits.length <= 1) result = '(' + digits;
+  else if(digits.length <= 4) result = '(' + digits;
+  else if(digits.length <= 7) result = '(' + digits.substring(0,4) + ') ' + digits.substring(4);
+  else if(digits.length <= 9) result = '(' + digits.substring(0,4) + ') ' + digits.substring(4,7) + ' ' + digits.substring(7);
+  else result = '(' + digits.substring(0,4) + ') ' + digits.substring(4,7) + ' ' + digits.substring(7,9) + ' ' + digits.substring(9,11);
   input.value = result;
+}
+function initTel(input){
+  if(!input.value) input.value = '(0';
 }
 
 const erkekMahalle={"AKPINAR MAHALLESİ":"HÜSEYİN SATI EKE","AKTAŞ MAHALLESİ":"HÜSEYİN SATI EKE","ALPAĞUT MAHALLESİ":"SADABAD","AŞAĞISOKU MAHALLESİ":"SOKU","BAHÇELİEVLER MAHALLESİ":"BOLU PROJE","BEŞKAVAKLAR MAHALLESİ":"BOLU PROJE","BORAZANLAR MAHALLESİ":"HÜSEYİN SATI EKE","BÜYÜKCAMİ MAHALLESİ":"SOKU","ÇAKMAKLAR MAHALLESİ":"BOLU PROJE","ÇIKINLAR MAHALLESİ":"SOKU","ÇİVRİL MAHALLESİ":"SADABAD","DAĞKENT MAHALLESİ":"SADABAD","DODURGA MAHALLESİ":"SOKU","GÖLYÜZÜ MAHALLESİ":"SOKU","ILICAKINIK MAHALLESİ":"HÜSEYİN SATI EKE","İHSANİYE MAHALLESİ":"SOKU","İZZET BAYSAL MAHALLESİ":"BOLU PROJE","KARACAAĞAÇ MAHALLESİ":"SOKU","KARACASU FATİH MAHALLESİ":"ÇAMLIYAYLA AHMEDİYE","KARAÇAYIR MAHALLESİ":"HÜSEYİN SATI EKE","KARAKÖY MAHALLESİ":"SADABAD","KARAMANLI MAHALLESİ":"SOKU","KASAPLAR MAHALLESİ":"SADABAD","KILIÇARSLAN MAHALLESİ":"KILIÇARSLAN","KÖROĞLU MAHALLESİ":"SOKU","KURUÇAY MAHALLESİ":"SOKU","KÜÇÜKBERK MAHALLESİ":"HÜSEYİN SATI EKE","KÜLTÜR MAHALLESİ":"HÜSEYİN SATI EKE","KÜRKÇÜLER MAHALLESİ":"SADABAD","OVADÜZÜ MAHALLESİ":"SOKU","PAŞAKÖY MAHALLESİ":"SADABAD","SAĞLIK MAHALLESİ":"SOKU","SALIBEYLER MAHALLESİ":"SOKU","SANDALLAR MAHALLESİ":"HÜSEYİN SATI EKE","SARICALAR MAHALLESİ":"SOKU","SEMERKANT MAHALLESİ":"SOKU","SEYİT MAHALLESİ":"HÜSEYİN SATI EKE","SÜMER MAHALLESİ":"HÜSEYİN SATI EKE","TABAKLAR MAHALLESİ":"HÜSEYİN SATI EKE","TEPECİK MAHALLESİ":"HÜSEYİN SATI EKE","UMUTKENT MAHALLESİ":"SADABAD","YAŞAMKENT MAHALLESİ":"SADABAD","YENİMAHALLE MAHALLESİ":"SADABAD","YUKARISOKU MAHALLESİ":"SOKU"};

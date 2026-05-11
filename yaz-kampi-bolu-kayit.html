@@ -138,6 +138,14 @@ textarea { resize: vertical; min-height: 80px; }
   font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; margin-top: 8px;
 }
 .btn-secondary:hover { border-color: var(--gray); color: var(--dark); }
+.btn-home {
+  display: block; width: 100%; padding: 12px 24px; margin-top: 8px;
+  background: transparent; color: var(--gray); border: 2px dashed var(--border);
+  border-radius: 14px; font-family: Nunito,sans-serif; font-size: 14px;
+  font-weight: 700; cursor: pointer; transition: all 0.2s; text-align: center;
+  text-decoration: none;
+}
+.btn-home:hover { border-color: var(--sky-dark); color: var(--dark); }
 .err-msg { color: var(--error); font-size: 12px; font-weight: 700; margin-top: 5px; display: none; }
 .err-msg.show { display: block; }
 hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0; }
@@ -160,8 +168,11 @@ hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0;
 </head>
 <body>
 
-<a href="https://www.yazkampimiz.com" style="position:fixed;bottom:24px;right:24px;z-index:999;background:#2d6e31;color:white;border-radius:50px;padding:12px 18px;font-family:Nunito,sans-serif;font-size:13px;font-weight:800;text-decoration:none;display:flex;align-items:center;gap:8px;box-shadow:0 4px 16px rgba(0,0,0,0.2);">🏠 Siteye Dön</a>
-<div style="background:rgba(74,184,232,0.5);backdrop-filter:blur(8px);text-align:center;padding:12px;color:#1a3a1c;font-family:'Adumu',sans-serif;font-size:18px;font-weight:700;letter-spacing:2px;border-bottom:2px solid rgba(255,255,255,0.4);">YAZ KAMPI 2026 — BOLU ÖN KAYIT FORMU</div>
+<div style="background:rgba(74,184,232,0.5);backdrop-filter:blur(8px);padding:12px 20px;border-bottom:2px solid rgba(255,255,255,0.4);display:flex;align-items:center;justify-content:space-between;">
+  <a href="https://www.yazkampimiz.com" style="background:white;color:#2d6e31;border-radius:50px;padding:8px 16px;font-family:Nunito,sans-serif;font-size:15px;font-weight:800;text-decoration:none;display:flex;align-items:center;gap:6px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">🏠 Ana Sayfa</a>
+  <span style="color:#1a3a1c;font-family:'Adumu',sans-serif;font-size:16px;font-weight:700;letter-spacing:1px;">YAZ KAMPI 2026 — BOLU</span>
+  <div style="width:100px"></div>
+</div>
 <div class="progress-wrap">
   <div class="progress-bar-bg">
     <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>

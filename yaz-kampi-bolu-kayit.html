@@ -565,6 +565,25 @@ function submitForm(){
   document.getElementById("summary-table").innerHTML=rows.map(function(r){
     return '<div class="summary-row"><span class="s-label">'+r[0]+'</span><span class="s-val">'+r[1]+"</span></div>";
   }).join("");
+  // Google Sheets'e gönder
+  var formData = {
+    cinsiyet: state.cinsiyet,
+    sinif: state.sinif,
+    konaklama: state.konaklama,
+    konum: state.konum,
+    mahalle: state.mahalle,
+    ilce: state.ilce,
+    kurum: state.kurum,
+    adiSoyadi: state.adiSoyadi,
+    okul: state.okul,
+    babaTel: state.babaTel,
+    anneTel: state.anneTel,
+    adres: state.adres
+  };
+  fetch("https://script.google.com/macros/s/AKfycby12VkjT7wDXrotSDAKTNo9nVE5NckpU3bpVPswNfPiYiUhP48LniIOrQETrWCDOUYz/exec", {
+    method: "POST",
+    body: JSON.stringify(formData)
+  }).catch(function(err){console.log(err);});
   goTo("success");
 }
 </script>

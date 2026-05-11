@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yaz Kampı 2026 - Bolu Ön Kayıt</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sky-dark: #4ab8e8;
+  --yellow: #f5c800;
+  --yellow-dark: #e0a800;
+  --green: #3a8c3f;
+  --green-dark: #2d6e31;
+  --white: #ffffff;
+  --dark: #1a3a1c;
+  --gray: #5a7a5c;
+  --border: #b8dfc8;
+  --error: #e53e3e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: "Nunito", sans-serif;
+  min-height: 100vh;
+  
+  
+  
+  
+  background: #7dd3f0;
+  position: relative;
+  overflow-x: hidden;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(125,211,240,0.08);
+  pointer-events: none;
+  z-index: 0;
+}
+.progress-wrap {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(74,184,232,0.78); backdrop-filter: blur(12px);
+  padding: 10px 20px; border-bottom: 2px solid rgba(255,255,255,0.35);
+}
+.progress-bar-bg { background: rgba(255,255,255,0.35); border-radius: 100px; height: 8px; overflow: hidden; }
+.progress-bar-fill {
+  background: linear-gradient(90deg, var(--yellow), var(--yellow-dark));
+  height: 100%; border-radius: 100px;
+  transition: width 0.45s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 0 8px rgba(245,200,0,0.6);
+}
+.progress-label { font-size: 12px; color: var(--white); font-weight: 700; margin-top: 6px; text-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+.header-spacer { height: 52px; }
+.container { max-width: 560px; margin: 0 auto; padding: 0 16px 120px; position: relative; z-index: 20; }
+.step { display: none; }
+.step.active { display: block; animation: popIn 0.35s cubic-bezier(.34,1.56,.64,1); }
+@keyframes popIn { from{opacity:0;transform:scale(0.94) translateY(12px)} to{opacity:1;transform:scale(1) translateY(0)} }
+.card {
+  background: rgba(255,255,255,0.93); border-radius: 24px; padding: 28px 24px;
+  box-shadow: 0 8px 32px rgba(58,140,63,0.15), 0 2px 8px rgba(0,0,0,0.08);
+  border: 2px solid rgba(255,255,255,0.85); backdrop-filter: blur(8px);
+}
+.step-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--yellow); color: var(--green-dark);
+  font-size: 11px; font-weight: 800; padding: 4px 12px;
+  border-radius: 100px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px;
+}
+.step-title { font-size: 22px; font-weight: 900; color: var(--dark); margin-bottom: 4px; }
+.step-desc { font-size: 14px; color: var(--gray); margin-bottom: 22px; line-height: 1.5; font-weight: 600; }
+.options-grid { display: grid; gap: 10px; }
+.options-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+.option-card {
+  border: 2.5px solid var(--border); border-radius: 16px; padding: 14px 16px;
+  cursor: pointer; transition: all 0.18s; display: flex; align-items: center;
+  gap: 12px; background: rgba(255,255,255,0.75); user-select: none;
+}
+.option-card:hover { border-color: var(--sky-dark); background: rgba(125,211,240,0.18); transform: translateY(-1px); }
+.option-card input { width: 20px; height: 20px; accent-color: var(--green); flex-shrink: 0; cursor: pointer; }
+.option-card span { font-size: 15px; font-weight: 700; color: var(--dark); }
+.option-card.selected { border-color: var(--green); background: rgba(58,140,63,0.1); box-shadow: 0 0 0 3px rgba(58,140,63,0.12); }
+.option-card.selected span { color: var(--green-dark); }
+.field { margin-bottom: 18px; }
+.field label { display: block; font-size: 13px; font-weight: 800; color: var(--dark); margin-bottom: 7px; }
+.req { color: var(--error); margin-left: 2px; }
+select, input[type="text"], input[type="tel"], textarea {
+  width: 100%; padding: 12px 16px; border: 2.5px solid var(--border);
+  border-radius: 14px; font-family: "Nunito", sans-serif; font-size: 15px;
+  font-weight: 600; color: var(--dark); background: rgba(255,255,255,0.9);
+  outline: none; transition: border-color 0.2s, box-shadow 0.2s; appearance: none;
+}
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235a7a5c' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  padding-right: 44px; cursor: pointer;
+}
+select:focus, input:focus, textarea:focus {
+  border-color: var(--sky-dark); box-shadow: 0 0 0 4px rgba(74,184,232,0.15); background: #fff;
+}
+textarea { resize: vertical; min-height: 80px; }
+.invalid { border-color: var(--error) !important; }
+.info-box {
+  background: rgba(125,211,240,0.18); border: 2px solid rgba(74,184,232,0.35);
+  border-left: 4px solid var(--sky-dark); border-radius: 14px; padding: 13px 16px;
+  margin-bottom: 18px; font-size: 13.5px; font-weight: 600; color: var(--dark); line-height: 1.55;
+}
+.info-box strong { color: var(--green-dark); }
+.kurum-result {
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+  border-radius: 18px; padding: 20px; text-align: center; margin-bottom: 18px;
+  display: none; box-shadow: 0 6px 20px rgba(58,140,63,0.3);
+}
+.kurum-result.show { display: block; animation: popIn 0.3s ease; }
+.kurum-label { font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-bottom: 6px; }
+.kurum-name { font-size: 20px; font-weight: 900; color: var(--white); margin-bottom: 3px; }
+.kurum-sub { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.75); }
+.btn-primary {
+  width: 100%; padding: 15px 24px;
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+  color: var(--white); border: none; border-radius: 16px;
+  font-family: "Nunito", sans-serif; font-size: 16px; font-weight: 800;
+  cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 16px rgba(58,140,63,0.35);
+  margin-top: 6px;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(58,140,63,0.45); }
+.btn-secondary {
+  width: 100%; padding: 12px 24px; background: transparent; color: var(--gray);
+  border: 2px solid var(--border); border-radius: 14px; font-family: "Nunito", sans-serif;
+  font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; margin-top: 8px;
+}
+.btn-secondary:hover { border-color: var(--gray); color: var(--dark); }
+.err-msg { color: var(--error); font-size: 12px; font-weight: 700; margin-top: 5px; display: none; }
+.err-msg.show { display: block; }
+hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0; }
+.success-wrap { text-align: center; padding: 8px 0; }
+.success-icon { font-size: 64px; margin-bottom: 16px; animation: bounce 0.6s ease; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+.success-wrap h2 { font-size: 26px; font-weight: 900; color: var(--dark); margin-bottom: 10px; }
+.success-wrap p { color: var(--gray); font-size: 15px; font-weight: 600; line-height: 1.5; }
+.summary-table { background: rgba(125,211,240,0.1); border-radius: 16px; padding: 16px; margin-top: 20px; text-align: left; }
+.summary-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1.5px dashed var(--border); font-size: 14px; gap: 12px; }
+.summary-row:last-child { border-bottom: none; }
+.s-label { color: var(--gray); font-weight: 700; white-space: nowrap; }
+.s-val { color: var(--dark); font-weight: 800; text-align: right; }
+@media(max-width:480px){
+  .card{padding:20px 16px;}
+  .options-grid.cols-2{grid-template-columns:1fr;}
+  .header-spacer{height:40px;}
+}
+</style>
+</head>
+<body>
+
+<div class="progress-wrap">
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+  </div>
+  <div class="progress-label" id="progressLabel">🌱 Başlayalım!</div>
+</div>
+
+<div class="header-spacer"></div>
+
+<div class="container">
+
+  <!-- ADIM 1 -->
+  <div class="step active" id="step-1">
+    <div class="card">
+      <div class="step-pill">🌟 Adım 1 / 6</div>
+      <div class="step-title">Cinsiyet</div>
+      <div class="step-desc">Öğrencinin cinsiyetini seçiniz.</div>
+      <div class="options-grid cols-2">
+        <label class="option-card"><input type="radio" name="cinsiyet" value="erkek" onchange="selectOption(this)"><span>👦 Erkek</span></label>
+        <label class="option-card"><input type="radio" name="cinsiyet" value="kiz" onchange="selectOption(this)"><span>👧 Kız</span></label>
+      </div>
+      <div class="err-msg" id="err-cinsiyet">⚠️ Lütfen cinsiyet seçiniz.</div>
+      <button class="btn-primary" onclick="goStep2()">Devam Et →</button>
+    </div>
+  </div>
+
+  <!-- ADIM 2 -->
+  <div class="step" id="step-2">
+    <div class="card">
+      <div class="step-pill">📚 Adım 2 / 6</div>
+      <div class="step-title">Sınıf</div>
+      <div class="step-desc">Öğrencinin <strong>geçtiği</strong> sınıfı seçiniz.</div>
+      <div class="field">
+        <label>Geçtiği Sınıf <span class="req">*</span></label>
+        <select id="sinif" onchange="updateSinifInfo()">
+          <option value="">— Seçiniz —</option>
+          <option value="2">2. Sınıf</option><option value="3">3. Sınıf</option>
+          <option value="4">4. Sınıf</option><option value="5">5. Sınıf</option>
+          <option value="6">6. Sınıf</option><option value="7">7. Sınıf</option>
+          <option value="8">8. Sınıf</option><option value="9">9. Sınıf</option>
+          <option value="10">10. Sınıf</option><option value="11">11. Sınıf</option>
+          <option value="12">12. Sınıf</option>
+        </select>
+        <div class="err-msg" id="err-sinif">⚠️ Lütfen sınıf seçiniz.</div>
+      </div>
+      <div class="info-box" id="sinif-info" style="display:none"></div>
+      <button class="btn-primary" onclick="goStep3()">Devam Et →</button>
+      <button class="btn-secondary" onclick="goTo(1)">← Geri</button>
+    </div>
+  </div>
+
+  <!-- ADIM 3 -->
+  <div class="step" id="step-3">
+    <div class="card">
+      <div class="step-pill">🏕️ Adım 3 / 6</div>
+      <div class="step-title">Katılım Programı</div>
+      <div class="step-desc">Yaz kampına katılım şeklinizi seçiniz.</div>
+      <div class="info-box" id="konaklama-info"></div>
+      <div class="options-grid" id="konaklama-options"></div>
+      <div class="err-msg" id="err-konaklama">⚠️ Lütfen katılım programı seçiniz.</div>
+      <button class="btn-primary" onclick="goStep4()" style="margin-top:14px">Devam Et →</button>
+      <button class="btn-secondary" onclick="goTo(2)">← Geri</button>
+    </div>
+  </div>
+
+  <!-- ADIM 4 -->
+  <div class="step" id="step-4">
+    <div class="card">
+      <div class="step-pill">📍 Adım 4 / 6</div>
+      <div class="step-title">Konum</div>
+      <div class="step-desc">Kayıt olmak istediğiniz yeri seçiniz.</div>
+      <div class="options-grid">
+        <label class="option-card"><input type="radio" name="konum" value="merkez" onchange="selectOption(this)"><span>🏙️ Bolu İl Merkezi</span></label>
+        <label class="option-card"><input type="radio" name="konum" value="ilce" onchange="selectOption(this)"><span>🏘️ İlçe</span></label>
+      </div>
+      <div class="err-msg" id="err-konum">⚠️ Lütfen konum seçiniz.</div>
+      <button class="btn-primary" onclick="goStep5()" style="margin-top:14px">Devam Et →</button>
+      <button class="btn-secondary" onclick="goTo(3)">← Geri</button>
+    </div>
+  </div>
+
+  <!-- ADIM 5 -->
+  <div class="step" id="step-5">
+    <div class="card">
+      <div class="step-pill">🗺️ Adım 5 / 6</div>
+      <div class="step-title" id="step5-title">Konum Detayı</div>
+      <div class="step-desc" id="step5-desc">Seçiminizi yapınız.</div>
+      <div id="mahalle-wrap" style="display:none">
+        <div class="field">
+          <label>Mahalleniz <span class="req">*</span></label>
+          <select id="mahalle" onchange="showKurum()">
+            <option value="">— Mahalle Seçiniz —</option>
+            <option>AKPINAR MAHALLESİ</option><option>AKTAŞ MAHALLESİ</option>
+            <option>ALPAĞUT MAHALLESİ</option><option>AŞAĞISOKU MAHALLESİ</option>
+            <option>BAHÇELİEVLER MAHALLESİ</option><option>BEŞKAVAKLAR MAHALLESİ</option>
+            <option>BORAZANLAR MAHALLESİ</option><option>BÜYÜKCAMİ MAHALLESİ</option>
+            <option>ÇAKMAKLAR MAHALLESİ</option><option>ÇIKINLAR MAHALLESİ</option>
+            <option>ÇİVRİL MAHALLESİ</option><option>DAĞKENT MAHALLESİ</option>
+            <option>DODURGA MAHALLESİ</option><option>GÖLYÜZÜ MAHALLESİ</option>
+            <option>ILICAKINIK MAHALLESİ</option><option>İHSANİYE MAHALLESİ</option>
+            <option>İZZET BAYSAL MAHALLESİ</option><option>KARACAAĞAÇ MAHALLESİ</option>
+            <option>KARACASU FATİH MAHALLESİ</option><option>KARAÇAYIR MAHALLESİ</option>
+            <option>KARAKÖY MAHALLESİ</option><option>KARAMANLI MAHALLESİ</option>
+            <option>KASAPLAR MAHALLESİ</option><option>KILIÇARSLAN MAHALLESİ</option>
+            <option>KÖROĞLU MAHALLESİ</option><option>KURUÇAY MAHALLESİ</option>
+            <option>KÜÇÜKBERK MAHALLESİ</option><option>KÜLTÜR MAHALLESİ</option>
+            <option>KÜRKÇÜLER MAHALLESİ</option><option>OVADÜZÜ MAHALLESİ</option>
+            <option>PAŞAKÖY MAHALLESİ</option><option>SAĞLIK MAHALLESİ</option>
+            <option>SALIBEYLER MAHALLESİ</option><option>SANDALLAR MAHALLESİ</option>
+            <option>SARICALAR MAHALLESİ</option><option>SEMERKANT MAHALLESİ</option>
+            <option>SEYİT MAHALLESİ</option><option>SÜMER MAHALLESİ</option>
+            <option>TABAKLAR MAHALLESİ</option><option>TEPECİK MAHALLESİ</option>
+            <option>UMUTKENT MAHALLESİ</option><option>YAŞAMKENT MAHALLESİ</option>
+            <option>YENİMAHALLE MAHALLESİ</option><option>YUKARISOKU MAHALLESİ</option>
+          </select>
+          <div class="err-msg" id="err-mahalle">⚠️ Lütfen mahalle seçiniz.</div>
+        </div>
+        <div class="kurum-result" id="kurum-result">
+          <div class="kurum-label">🏫 Yönlendirildiğiniz Kurum</div>
+          <div class="kurum-name" id="kurum-name">—</div>
+          <div class="kurum-sub" id="kurum-sub"></div>
+        </div>
+        <div id="diger-wrap" style="display:none">
+          <div class="field">
+            <label>Farklı bir kurum seçmek ister misiniz?</label>
+            <select id="diger-kurum"><option value="">— Hayır, önerilen kuruma gidiyorum —</option></select>
+          </div>
+        </div>
+      </div>
+      <div id="ilce-wrap" style="display:none">
+        <div class="field">
+          <label>İlçenizi Seçiniz <span class="req">*</span></label>
+          <select id="ilce"><option value="">— İlçe Seçiniz —</option></select>
+          <div class="err-msg" id="err-ilce">⚠️ Lütfen ilçe seçiniz.</div>
+        </div>
+        <div class="info-box" id="ilce-info" style="display:none"></div>
+      </div>
+      <button class="btn-primary" onclick="goStep6()" style="margin-top:6px">Devam Et →</button>
+      <button class="btn-secondary" onclick="goTo(4)">← Geri</button>
+    </div>
+  </div>
+
+  <!-- ADIM 6 -->
+  <div class="step" id="step-6">
+    <div class="card">
+      <div class="step-pill">📝 Adım 6 / 6</div>
+      <div class="step-title">Kayıt Bilgileri</div>
+      <div class="step-desc">Son adım! Bilgileri eksiksiz doldurunuz.</div>
+      <div class="field">
+        <label>Öğrenci Adı ve Soyadı <span class="req">*</span></label>
+        <input type="text" id="adi-soyadi" placeholder="Ad Soyad">
+        <div class="err-msg" id="err-adi">⚠️ Ad Soyad boş bırakılamaz.</div>
+      </div>
+      <div class="field">
+        <label>Okuduğu Okul <span class="req">*</span></label>
+        <input type="text" id="okul" placeholder="Okul adı">
+        <div class="err-msg" id="err-okul">⚠️ Okul adı boş bırakılamaz.</div>
+      </div>
+      <div class="field">
+        <label>Baba İletişim No <span class="req">*</span></label>
+        <input type="tel" id="baba-tel" placeholder="05XX XXX XX XX">
+        <div class="err-msg" id="err-baba">⚠️ Telefon numarası boş bırakılamaz.</div>
+      </div>
+      <div class="field">
+        <label>Anne İletişim No <span class="req">*</span></label>
+        <input type="tel" id="anne-tel" placeholder="05XX XXX XX XX">
+        <div class="err-msg" id="err-anne">⚠️ Telefon numarası boş bırakılamaz.</div>
+      </div>
+      <div class="field">
+        <label>Ev Adresi <span class="req">*</span></label>
+        <textarea id="adres" placeholder="Mahalle, sokak, no..."></textarea>
+        <div class="err-msg" id="err-adres">⚠️ Adres boş bırakılamaz.</div>
+      </div>
+      <hr class="divider">
+      <div class="field">
+        <label class="option-card" style="align-items:flex-start;gap:14px;">
+          <input type="checkbox" id="kvkk" onchange="this.closest('.option-card').classList.toggle('selected',this.checked)" style="margin-top:2px;width:20px;height:20px;accent-color:var(--green);flex-shrink:0;cursor:pointer;">
+          <span style="font-size:13px;font-weight:600;line-height:1.5;color:var(--gray);">
+            Kişisel verilerimin işlenmesine ilişkin <a href="https://drive.google.com/file/d/1dFS_hODTZAR03qGkNHHLUTRSe5MbDbz9/view?usp=sharing" target="_blank" style="color:var(--green-dark);font-weight:800;">Aydınlatma Metni</a>'ni okudum ve kişisel verilerimin işlenmesine <strong style="color:var(--dark)">açık rıza</strong> gösteriyorum. <span class="req">*</span>
+          </span>
+        </label>
+        <div class="err-msg" id="err-kvkk">⚠️ KVKK onayı zorunludur.</div>
+      </div>
+      <button class="btn-primary" onclick="submitForm()">🌟 Kaydı Tamamla</button>
+      <button class="btn-secondary" onclick="goTo(5)">← Geri</button>
+    </div>
+  </div>
+
+  <!-- BAŞARILI -->
+  <div class="step" id="step-success">
+    <div class="card">
+      <div class="success-wrap">
+        <div class="success-icon">🌼</div>
+        <h2>Kaydınız Alındı!</h2>
+        <p>Ön kayıt başvurunuz başarıyla iletildi.<br>En kısa sürede sizinle iletişime geçilecektir.</p>
+        <div class="summary-table" id="summary-table"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const erkekMahalle={"AKPINAR MAHALLESİ":"HÜSEYİN SATI EKE","AKTAŞ MAHALLESİ":"HÜSEYİN SATI EKE","ALPAĞUT MAHALLESİ":"SADABAD","AŞAĞISOKU MAHALLESİ":"SOKU","BAHÇELİEVLER MAHALLESİ":"BOLU PROJE","BEŞKAVAKLAR MAHALLESİ":"BOLU PROJE","BORAZANLAR MAHALLESİ":"HÜSEYİN SATI EKE","BÜYÜKCAMİ MAHALLESİ":"SOKU","ÇAKMAKLAR MAHALLESİ":"BOLU PROJE","ÇIKINLAR MAHALLESİ":"SOKU","ÇİVRİL MAHALLESİ":"SADABAD","DAĞKENT MAHALLESİ":"SADABAD","DODURGA MAHALLESİ":"SOKU","GÖLYÜZÜ MAHALLESİ":"SOKU","ILICAKINIK MAHALLESİ":"HÜSEYİN SATI EKE","İHSANİYE MAHALLESİ":"SOKU","İZZET BAYSAL MAHALLESİ":"BOLU PROJE","KARACAAĞAÇ MAHALLESİ":"SOKU","KARACASU FATİH MAHALLESİ":"ÇAMLIYAYLA AHMEDİYE","KARAÇAYIR MAHALLESİ":"HÜSEYİN SATI EKE","KARAKÖY MAHALLESİ":"SADABAD","KARAMANLI MAHALLESİ":"SOKU","KASAPLAR MAHALLESİ":"SADABAD","KILIÇARSLAN MAHALLESİ":"KILIÇARSLAN","KÖROĞLU MAHALLESİ":"SOKU","KURUÇAY MAHALLESİ":"SOKU","KÜÇÜKBERK MAHALLESİ":"HÜSEYİN SATI EKE","KÜLTÜR MAHALLESİ":"HÜSEYİN SATI EKE","KÜRKÇÜLER MAHALLESİ":"SADABAD","OVADÜZÜ MAHALLESİ":"SOKU","PAŞAKÖY MAHALLESİ":"SADABAD","SAĞLIK MAHALLESİ":"SOKU","SALIBEYLER MAHALLESİ":"SOKU","SANDALLAR MAHALLESİ":"HÜSEYİN SATI EKE","SARICALAR MAHALLESİ":"SOKU","SEMERKANT MAHALLESİ":"SOKU","SEYİT MAHALLESİ":"HÜSEYİN SATI EKE","SÜMER MAHALLESİ":"HÜSEYİN SATI EKE","TABAKLAR MAHALLESİ":"HÜSEYİN SATI EKE","TEPECİK MAHALLESİ":"HÜSEYİN SATI EKE","UMUTKENT MAHALLESİ":"SADABAD","YAŞAMKENT MAHALLESİ":"SADABAD","YENİMAHALLE MAHALLESİ":"SADABAD","YUKARISOKU MAHALLESİ":"SOKU"};
+
+const kizMahalle={"AKPINAR MAHALLESİ":"HİLAL KIZ YURDU","AKTAŞ MAHALLESİ":"HİLAL KIZ YURDU","ALPAĞUT MAHALLESİ":"FERHAN SULTAN KIZ YURDU","AŞAĞISOKU MAHALLESİ":"FERHAN SULTAN KIZ YURDU","BAHÇELİEVLER MAHALLESİ":"HİLAL KIZ YURDU","BEŞKAVAKLAR MAHALLESİ":"HİLAL KIZ YURDU","BORAZANLAR MAHALLESİ":"FERHAN SULTAN KIZ YURDU","BÜYÜKCAMİ MAHALLESİ":"HİLAL KIZ YURDU","ÇAKMAKLAR MAHALLESİ":"HİLAL KIZ YURDU","ÇIKINLAR MAHALLESİ":"FERHAN SULTAN KIZ YURDU","ÇİVRİL MAHALLESİ":"FERHAN SULTAN KIZ YURDU","DAĞKENT MAHALLESİ":"FERHAN SULTAN KIZ YURDU","DODURGA MAHALLESİ":"FERHAN SULTAN KIZ YURDU","GÖLYÜZÜ MAHALLESİ":"FERHAN SULTAN KIZ YURDU","ILICAKINIK MAHALLESİ":"HİLAL KIZ YURDU","İHSANİYE MAHALLESİ":"HİLAL KIZ YURDU","İZZET BAYSAL MAHALLESİ":"HİLAL KIZ YURDU","KARACAAĞAÇ MAHALLESİ":"HİLAL KIZ YURDU","KARACASU FATİH MAHALLESİ":"HİLAL KIZ YURDU","KARAÇAYIR MAHALLESİ":"HİLAL KIZ YURDU","KARAKÖY MAHALLESİ":"HİLAL KIZ YURDU","KARAMANLI MAHALLESİ":"HİLAL KIZ YURDU","KASAPLAR MAHALLESİ":"HİLAL KIZ YURDU","KILIÇARSLAN MAHALLESİ":"HİLAL KIZ YURDU","KÖROĞLU MAHALLESİ":"FERHAN SULTAN KIZ YURDU","KURUÇAY MAHALLESİ":"HİLAL KIZ YURDU","KÜÇÜKBERK MAHALLESİ":"HİLAL KIZ YURDU","KÜLTÜR MAHALLESİ":"HİLAL KIZ YURDU","KÜRKÇÜLER MAHALLESİ":"FERHAN SULTAN KIZ YURDU","OVADÜZÜ MAHALLESİ":"FERHAN SULTAN KIZ YURDU","PAŞAKÖY MAHALLESİ":"FERHAN SULTAN KIZ YURDU","SAĞLIK MAHALLESİ":"FERHAN SULTAN KIZ YURDU","SALIBEYLER MAHALLESİ":"FERHAN SULTAN KIZ YURDU","SANDALLAR MAHALLESİ":"FERHAN SULTAN KIZ YURDU","SARICALAR MAHALLESİ":"FERHAN SULTAN KIZ YURDU","SEMERKANT MAHALLESİ":"FERHAN SULTAN KIZ YURDU","SEYİT MAHALLESİ":"HİLAL KIZ YURDU","SÜMER MAHALLESİ":"HİLAL KIZ YURDU","TABAKLAR MAHALLESİ":"HİLAL KIZ YURDU","TEPECİK MAHALLESİ":"HİLAL KIZ YURDU","UMUTKENT MAHALLESİ":"HİLAL KIZ YURDU","YAŞAMKENT MAHALLESİ":"FERHAN SULTAN KIZ YURDU","YENİMAHALLE MAHALLESİ":"FERHAN SULTAN KIZ YURDU","YUKARISOKU MAHALLESİ":"FERHAN SULTAN KIZ YURDU"};
+
+const erkekDiger=["BOLU PROJE","HÜSEYİN SATI EKE","SOKU","SADABAD","KILIÇARSLAN","ÇAMLIYAYLA AHMEDİYE"];
+const kizDiger=["HİLAL KIZ YURDU","FERHAN SULTAN KIZ YURDU"];
+const yatiliAlternatif={"KILIÇARSLAN":"SADABAD","ÇAMLIYAYLA AHMEDİYE":"HÜSEYİN SATI EKE"};
+const yatiliOlmaz=["KILIÇARSLAN","ÇAMLIYAYLA AHMEDİYE"];
+
+const erkekIlceKurum={"GÖYNÜK":"GÖYNÜK","KIBRISCIK":"KIBRISCIK","MENGEN":"MENGEN","MUDURNU":"MUDURNU","SEBEN":"SEBEN","YENİÇAĞA":"YENİÇAĞA","DÖRTDİVAN":"DÖRTDİVAN","TAŞKESTİ":"TAŞKESTİ"};
+const kizIlceKurum={"GEREDE KIZ":"GEREDE HAFİZE SULTAN KIZ","GÖYNÜK KIZ":"GÖYNÜK KIZ","MENGEN KIZ":"MENGEN KIZ","MUDURNU KIZ":"MUDURNU KIZ","SEBEN KIZ":"SEBEN KIZ","DÖRTDİVAN KIZ":"DÖRTDİVAN KIZ","YENİÇAĞA":"YENİÇAĞA","KIBRISCIK":"KIBRISCIK","TAŞKESTİ":"TAŞKESTİ"};
+
+let state={currentStep:1,cinsiyet:"",sinif:0,konaklama:"",konum:"",mahalle:"",kurum:"",ilce:"",adiSoyadi:"",okul:"",babaTel:"",anneTel:"",adres:""};
+
+function updateProgress(step){
+  document.getElementById("progressBar").style.width=Math.round(((step-1)/6)*100)+"%";
+  const l=["","🌸 Cinsiyet","📚 Sınıf","🏕️ Program","📍 Konum","🗺️ Detay","📝 Bilgiler"];
+  document.getElementById("progressLabel").textContent="Adım "+step+" / 6 — "+(l[step]||"");
+}
+
+function goTo(step){
+  document.querySelectorAll(".step").forEach(function(s){s.classList.remove("active");});
+  var el=document.getElementById(step==="success"?"step-success":"step-"+step);
+  if(el){el.classList.add("active");window.scrollTo({top:0,behavior:"smooth"});}
+  if(step!=="success"){state.currentStep=step;updateProgress(step);}
+  else{document.getElementById("progressBar").style.width="100%";document.getElementById("progressLabel").textContent="✅ Kayıt Tamamlandı!";}
+}
+
+function selectOption(radio){
+  document.querySelectorAll('input[name="'+radio.name+'"]').forEach(function(r){
+    r.closest(".option-card").classList.toggle("selected",r===radio);
+  });
+}
+
+function goStep2(){
+  var s=document.querySelector('input[name="cinsiyet"]:checked');
+  if(!s){document.getElementById("err-cinsiyet").classList.add("show");return;}
+  document.getElementById("err-cinsiyet").classList.remove("show");
+  state.cinsiyet=s.value;
+  goTo(2);
+}
+
+function updateSinifInfo(){
+  var sinif=parseInt(document.getElementById("sinif").value);
+  var box=document.getElementById("sinif-info");
+  if(!sinif){box.style.display="none";return;}
+  box.style.display="block";
+  if(sinif<=4) box.innerHTML="ℹ️ 2, 3 ve 4. sınıf öğrencileri yalnızca <strong>Gündüzlü</strong> programa katılabilir.";
+  else if(state.cinsiyet==="erkek"&&sinif>=8) box.innerHTML="ℹ️ Erkek 8-12. sınıflar il merkezinde <strong>Süleymaniye Yurdu</strong>na gündüzlü veya yatılı kayıt olabilir.";
+  else if(state.cinsiyet==="kiz"&&sinif===8) box.innerHTML="ℹ️ 8. sınıf kız öğrenciler yalnızca <strong>Karacasu Kız Yurdu</strong>na yatılı kayıt olabilir.";
+  else if(state.cinsiyet==="kiz"&&sinif>=9) box.innerHTML="ℹ️ 9-12. sınıf kız öğrenciler yalnızca <strong>Karacasu Kursu</strong>na gündüzlü kayıt olabilir.";
+  else box.innerHTML="✅ Bu sınıf için gündüzlü veya yatılı program seçilebilir.";
+}
+
+function goStep3(){
+  var sinif=parseInt(document.getElementById("sinif").value);
+  if(!sinif){document.getElementById("err-sinif").classList.add("show");document.getElementById("sinif").classList.add("invalid");return;}
+  document.getElementById("err-sinif").classList.remove("show");document.getElementById("sinif").classList.remove("invalid");
+  state.sinif=sinif;
+  var c=state.cinsiyet;
+  var opts=[];
+  var info="";
+  if(sinif<=4){opts=["Gündüzlü"];info="⚠️ 2, 3 ve 4. sınıf öğrencileri yalnızca <strong>Gündüzlü</strong> programa katılabilir.";}
+  else if(c==="kiz"&&sinif===8){opts=["Yatılı"];info="⚠️ 8. sınıf kız öğrenciler yalnızca <strong>Karacasu Kız Yurdu</strong>na yatılı kayıt olabilir.";}
+  else if(c==="kiz"&&sinif>=9){opts=["Gündüzlü"];info="⚠️ 9-12. sınıf kız öğrenciler yalnızca <strong>Karacasu Kursu</strong>na gündüzlü kayıt olabilir.";}
+  else{opts=["Gündüzlü","Yatılı"];info="✅ Gündüzlü veya yatılı programa katılabilirsiniz.";}
+  document.getElementById("konaklama-info").innerHTML=info;
+  var wrap=document.getElementById("konaklama-options");
+  wrap.innerHTML="";
+  opts.forEach(function(opt){
+    wrap.innerHTML+='<label class="option-card"><input type="radio" name="konaklama" value="'+opt.toLowerCase()+'" onchange="selectOption(this)"><span>'+(opt==="Gündüzlü"?"🌞":"🌙")+" "+opt+" Programa Katılmak İstiyorum</span></label>";
+  });
+  if(opts.length===1){var r=wrap.querySelector("input");r.checked=true;r.closest(".option-card").classList.add("selected");state.konaklama=opts[0].toLowerCase();}
+  goTo(3);
+}
+
+function goStep4(){
+  var s=document.querySelector('input[name="konaklama"]:checked');
+  if(!s){document.getElementById("err-konaklama").classList.add("show");return;}
+  document.getElementById("err-konaklama").classList.remove("show");
+  state.konaklama=s.value;
+  goTo(4);
+}
+
+function goStep5(){
+  var s=document.querySelector('input[name="konum"]:checked');
+  if(!s){document.getElementById("err-konum").classList.add("show");return;}
+  document.getElementById("err-konum").classList.remove("show");
+  state.konum=s.value;
+  var sinif=state.sinif;
+  var c=state.cinsiyet;
+  if(c==="kiz"&&sinif===8){state.kurum="KARACASU KIZ YURDU";goTo(6);return;}
+  if(c==="kiz"&&sinif>=9){state.kurum="KARACASU KURSU";goTo(6);return;}
+  if(c==="erkek"&&sinif>=8&&s.value==="merkez"){state.kurum="SÜLEYMANİYE YURDU";goTo(6);return;}
+  if(s.value==="merkez"){
+    document.getElementById("mahalle-wrap").style.display="block";
+    document.getElementById("ilce-wrap").style.display="none";
+    document.getElementById("step5-title").textContent="Mahalle Seçimi";
+    document.getElementById("step5-desc").textContent="Yaşadığınız mahalleyi seçin, size en yakın kurumu gösterelim.";
+    document.getElementById("mahalle").value="";
+    document.getElementById("kurum-result").classList.remove("show");
+    document.getElementById("diger-wrap").style.display="none";
+  } else {
+    document.getElementById("mahalle-wrap").style.display="none";
+    document.getElementById("ilce-wrap").style.display="block";
+    document.getElementById("step5-title").textContent="İlçe Seçimi";
+    document.getElementById("step5-desc").textContent="Yaz kampına katılmak istediğiniz ilçeyi seçiniz.";
+    var erkekIlceler=["GEREDE","GÖYNÜK","KIBRISCIK","MENGEN","MUDURNU","SEBEN","YENİÇAĞA","DÖRTDİVAN","TAŞKESTİ"];
+    var kizIlceler=["GEREDE KIZ","GÖYNÜK KIZ","MENGEN KIZ","MUDURNU KIZ","SEBEN KIZ","DÖRTDİVAN KIZ","YENİÇAĞA","KIBRISCIK","TAŞKESTİ"];
+    var ilceler=c==="erkek"?erkekIlceler:kizIlceler;
+    var ilceSel=document.getElementById("ilce");
+    ilceSel.innerHTML="<option value=''>— İlçe Seçiniz —</option>";
+    ilceler.forEach(function(il){ilceSel.innerHTML+="<option>"+il+"</option>";});
+    var box=document.getElementById("ilce-info");
+    box.style.display="block";
+    box.innerHTML=c==="erkek"&&sinif===8?"⚠️ İlçelerde 8. sınıf erkek öğrenciler yalnızca <strong>yatılı</strong> olarak kayıt olabilir.":"✅ İlçe yurduna gündüzlü veya yatılı kayıt olabilirsiniz.";
+  }
+  goTo(5);
+}
+
+function showKurum(){
+  var mahalle=document.getElementById("mahalle").value;
+  if(!mahalle){document.getElementById("kurum-result").classList.remove("show");return;}
+  state.mahalle=mahalle;
+  var c=state.cinsiyet;
+  var kurum=c==="erkek"?erkekMahalle[mahalle]:kizMahalle[mahalle];
+  if(!kurum) kurum="Belirlenemedi";
+  var sub=c==="erkek"?"Erkek Yurdu":"Kız Yurdu";
+  if(yatiliAlternatif[kurum]&&state.konaklama==="yatılı"){
+    kurum=yatiliAlternatif[kurum];
+    sub+=" (Yatılı için yönlendirildi)";
+  }
+  state.kurum=kurum;
+  document.getElementById("kurum-name").textContent=kurum;
+  document.getElementById("kurum-sub").textContent=sub;
+  document.getElementById("kurum-result").classList.add("show");
+  var dw=document.getElementById("diger-wrap");
+  var ds=document.getElementById("diger-kurum");
+  dw.style.display="block";
+  ds.innerHTML="<option value=''>— Hayır, önerilen kuruma gidiyorum —</option>";
+  var alternatifler=c==="erkek"?erkekDiger:kizDiger;
+  alternatifler.filter(function(k){
+    if(k===kurum) return false;
+    if(state.konaklama==="yatılı"&&yatiliOlmaz.includes(k)) return false;
+    return true;
+  }).forEach(function(k){ds.innerHTML+="<option value='"+k+"'>"+k+"</option>";});
+}
+
+function goStep6(){
+  var konum=state.konum;
+  var c=state.cinsiyet;
+  var s=state.sinif;
+  if(c==="erkek"&&s>=8&&konum==="merkez"){goTo(6);return;}
+  if(konum==="merkez"){
+    var m=document.getElementById("mahalle").value;
+    if(!m){document.getElementById("err-mahalle").classList.add("show");document.getElementById("mahalle").classList.add("invalid");return;}
+    document.getElementById("err-mahalle").classList.remove("show");document.getElementById("mahalle").classList.remove("invalid");
+    state.mahalle=m;
+    var d=document.getElementById("diger-kurum").value;
+    if(d) state.kurum=d;
+  } else {
+    var il=document.getElementById("ilce").value;
+    if(!il){document.getElementById("err-ilce").classList.add("show");document.getElementById("ilce").classList.add("invalid");return;}
+    document.getElementById("err-ilce").classList.remove("show");document.getElementById("ilce").classList.remove("invalid");
+    state.ilce=il;
+    var kizGunduzluIlce=["KIBRISCIK","TAŞKESTİ"];
+    if(c==="kiz"&&kizGunduzluIlce.includes(il)&&state.konaklama==="yatılı"){
+      state.konaklama="gündüzlü";
+      alert("⚠️ "+il+" ilçesinde kız yatılı kaydı bulunmamaktadır. Gündüzlü olarak devam edilecektir.");
+    }
+    if(c==="erkek"&&il==="GEREDE"){
+      var yatili=state.konaklama==="yatılı";
+      if((s===7||s===8)&&yatili){
+        var sec=confirm("Gerede için kurum seçiniz:\nOK: GEREDE ESENTEPE (Lise Yurdu)\nİptal: GEREDE");
+        state.kurum=sec?"GEREDE ESENTEPE":"GEREDE";
+      } else {
+        state.kurum="GEREDE";
+      }
+    } else if(c==="erkek"&&erkekIlceKurum[il]){
+      state.kurum=erkekIlceKurum[il];
+    } else if(c==="kiz"&&kizIlceKurum[il]){
+      state.kurum=kizIlceKurum[il];
+    }
+  }
+  goTo(6);
+}
+
+function submitForm(){
+  var valid=true;
+  [["adi-soyadi","err-adi","adiSoyadi"],["okul","err-okul","okul"],["baba-tel","err-baba","babaTel"],["anne-tel","err-anne","anneTel"],["adres","err-adres","adres"]].forEach(function(arr){
+    var el=document.getElementById(arr[0]);
+    if(!el.value.trim()){document.getElementById(arr[1]).classList.add("show");el.classList.add("invalid");valid=false;}
+    else{document.getElementById(arr[1]).classList.remove("show");el.classList.remove("invalid");state[arr[2]]=el.value.trim();}
+  });
+  if(!document.getElementById("kvkk").checked){document.getElementById("err-kvkk").classList.add("show");valid=false;}
+  else document.getElementById("err-kvkk").classList.remove("show");
+  if(!valid) return;
+  var rows=[
+    ["Cinsiyet",state.cinsiyet==="erkek"?"Erkek":"Kız"],
+    ["Sınıf",state.sinif+". Sınıf"],
+    ["Program",state.konaklama==="gündüzlü"?"Gündüzlü":"Yatılı"],
+    ["Konum",state.konum==="merkez"?"Bolu İl Merkezi":"İlçe"]
+  ];
+  if(state.mahalle) rows.push(["Mahalle",state.mahalle]);
+  if(state.ilce) rows.push(["İlçe",state.ilce]);
+  if(state.kurum) rows.push(["Kurum",state.kurum]);
+  rows.push(["Öğrenci",state.adiSoyadi],["Okul",state.okul],["Baba Tel",state.babaTel],["Anne Tel",state.anneTel]);
+  document.getElementById("summary-table").innerHTML=rows.map(function(r){
+    return '<div class="summary-row"><span class="s-label">'+r[0]+'</span><span class="s-val">'+r[1]+"</span></div>";
+  }).join("");
+  goTo("success");
+}
+</script>
+</body>
+</html>

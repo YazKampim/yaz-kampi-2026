@@ -269,24 +269,26 @@ hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0;
             <option>ALPAĞUT MAHALLESİ</option><option>AŞAĞISOKU MAHALLESİ</option>
             <option>BAHÇELİEVLER MAHALLESİ</option><option>BEŞKAVAKLAR MAHALLESİ</option>
             <option>BORAZANLAR MAHALLESİ</option><option>BÜYÜKCAMİ MAHALLESİ</option>
-            <option>ÇAKMAKLAR MAHALLESİ</option><option>ÇIKINLAR MAHALLESİ</option>
-            <option>ÇİVRİL MAHALLESİ</option><option>DAĞKENT MAHALLESİ</option>
-            <option>DODURGA MAHALLESİ</option><option>GÖLYÜZÜ MAHALLESİ</option>
-            <option>ILICAKINIK MAHALLESİ</option><option>İHSANİYE MAHALLESİ</option>
-            <option>İZZET BAYSAL MAHALLESİ</option><option>KARACAAĞAÇ MAHALLESİ</option>
-            <option>KARACASU FATİH MAHALLESİ</option><option>KARAÇAYIR MAHALLESİ</option>
-            <option>KARAKÖY MAHALLESİ</option><option>KARAMANLI MAHALLESİ</option>
-            <option>KASAPLAR MAHALLESİ</option><option>KILIÇARSLAN MAHALLESİ</option>
-            <option>KÖROĞLU MAHALLESİ</option><option>KURUÇAY MAHALLESİ</option>
-            <option>KÜÇÜKBERK MAHALLESİ</option><option>KÜLTÜR MAHALLESİ</option>
-            <option>KÜRKÇÜLER MAHALLESİ</option><option>OVADÜZÜ MAHALLESİ</option>
+            <option>ÇAKMAKLAR MAHALLESİ</option><option>ÇAYDURT MAHALLESİ</option>
+            <option>ÇIKINLAR MAHALLESİ</option><option>ÇİVRİL MAHALLESİ</option>
+            <option>DAĞKENT MAHALLESİ</option><option>DODURGA MAHALLESİ</option>
+            <option>GÖLYÜZÜ MAHALLESİ</option><option>ILICAKINIK MAHALLESİ</option>
+            <option>İHSANİYE MAHALLESİ</option><option>İZZET BAYSAL MAHALLESİ</option>
+            <option>KARACAAĞAÇ MAHALLESİ</option><option>KARACASU FATİH MAHALLESİ</option>
+            <option>KARAÇAYIR MAHALLESİ</option><option>KARAKÖY MAHALLESİ</option>
+            <option>KARAMANLI MAHALLESİ</option><option>KASAPLAR MAHALLESİ</option>
+            <option>KILIÇARSLAN MAHALLESİ</option><option>KÖROĞLU MAHALLESİ</option>
+            <option>KURUÇAY MAHALLESİ</option><option>KÜÇÜKBERK MAHALLESİ</option>
+            <option>KÜLTÜR MAHALLESİ</option><option>KÜRKÇÜLER MAHALLESİ</option>
+            <option>OKÇULAR MAHALLESİ</option><option>OVADÜZÜ MAHALLESİ</option>
             <option>PAŞAKÖY MAHALLESİ</option><option>SAĞLIK MAHALLESİ</option>
             <option>SALIBEYLER MAHALLESİ</option><option>SANDALLAR MAHALLESİ</option>
             <option>SARICALAR MAHALLESİ</option><option>SEMERKANT MAHALLESİ</option>
-            <option>SEYİT MAHALLESİ</option><option>SÜMER MAHALLESİ</option>
-            <option>TABAKLAR MAHALLESİ</option><option>TEPECİK MAHALLESİ</option>
-            <option>UMUTKENT MAHALLESİ</option><option>YAŞAMKENT MAHALLESİ</option>
-            <option>YENİMAHALLE MAHALLESİ</option><option>YUKARISOKU MAHALLESİ</option>
+            <option>SEYİT MAHALLESİ</option><option>SULTANKÖY MAHALLESİ</option>
+            <option>SÜMER MAHALLESİ</option><option>TABAKLAR MAHALLESİ</option>
+            <option>TEPECİK MAHALLESİ</option><option>UMUTKENT MAHALLESİ</option>
+            <option>YAŞAMKENT MAHALLESİ</option><option>YENİMAHALLE MAHALLESİ</option>
+            <option>YUKARISOKU MAHALLESİ</option>
           </select>
           <div class="err-msg" id="err-mahalle">⚠️ Lütfen mahalle seçiniz.</div>
         </div>
@@ -322,6 +324,16 @@ hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0;
       <div class="step-title">Kayıt Bilgileri</div>
       <div class="step-desc">Son adım! Bilgileri eksiksiz doldurunuz.</div>
       <div class="field">
+        <label>Anne Adı <span class="req">*</span></label>
+        <input type="text" id="anne-adi" placeholder="Anne Adı">
+        <div class="err-msg" id="err-anne-adi">⚠️ Anne adı boş bırakılamaz.</div>
+      </div>
+      <div class="field">
+        <label>Baba Adı <span class="req">*</span></label>
+        <input type="text" id="baba-adi" placeholder="Baba Adı">
+        <div class="err-msg" id="err-baba-adi">⚠️ Baba adı boş bırakılamaz.</div>
+      </div>
+      <div class="field">
         <label>Öğrenci Adı ve Soyadı <span class="req">*</span></label>
         <input type="text" id="adi-soyadi" placeholder="Ad Soyad">
         <div class="err-msg" id="err-adi">⚠️ Ad Soyad boş bırakılamaz.</div>
@@ -337,10 +349,11 @@ hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0;
         <div class="err-msg" id="err-baba">⚠️ Telefon numarası boş bırakılamaz.</div>
       </div>
       <div class="field">
-        <label>Anne İletişim No <span class="req">*</span></label>
+        <label>Anne İletişim No</label>
         <input type="tel" id="anne-tel" placeholder="(0___) ___ __ __" maxlength="16" oninput="formatTel(this)" onfocus="initTel(this)">
         <div class="err-msg" id="err-anne">⚠️ Telefon numarası boş bırakılamaz.</div>
       </div>
+      <div class="err-msg" id="err-tel" style="margin-bottom:10px;">⚠️ En az bir telefon numarası girilmelidir.</div>
       <div class="field">
         <label>Ev Adresi <span class="req">*</span></label>
         <textarea id="adres" placeholder="Mahalle, sokak, no..."></textarea>
@@ -377,40 +390,140 @@ hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0;
 </div>
 
 <script>
-function formatTel(input){
-  var digits = input.value.replace(/[^0-9]/g,'');
-  if(digits.length === 0){ input.value = '(0'; return; }
-  if(!digits.startsWith('0')) digits = '0' + digits;
-  if(digits.length > 11) digits = digits.substring(0,11);
-  var result = '';
-  if(digits.length <= 1) result = '(' + digits;
-  else if(digits.length <= 4) result = '(' + digits;
-  else if(digits.length <= 7) result = '(' + digits.substring(0,4) + ') ' + digits.substring(4);
-  else if(digits.length <= 9) result = '(' + digits.substring(0,4) + ') ' + digits.substring(4,7) + ' ' + digits.substring(7);
-  else result = '(' + digits.substring(0,4) + ') ' + digits.substring(4,7) + ' ' + digits.substring(7,9) + ' ' + digits.substring(9,11);
-  input.value = result;
-}
-function initTel(input){
-  if(!input.value) input.value = '(0';
-}
+// ===== ERKEK MAHALLE → KURUM =====
+const erkekMahalle={
+  "AKPINAR MAHALLESİ":"HÜSEYİN SATI EKE",
+  "AKTAŞ MAHALLESİ":"HÜSEYİN SATI EKE",
+  "ALPAĞUT MAHALLESİ":"SADABAD",
+  "AŞAĞISOKU MAHALLESİ":"SOKU",
+  "BAHÇELİEVLER MAHALLESİ":"KOPUZLAR",
+  "BEŞKAVAKLAR MAHALLESİ":"KOPUZLAR",
+  "BORAZANLAR MAHALLESİ":"HÜSEYİN SATI EKE",
+  "BÜYÜKCAMİ MAHALLESİ":"SOKU",
+  "ÇAKMAKLAR MAHALLESİ":"KOPUZLAR",
+  "ÇIKINLAR MAHALLESİ":"SOKU",
+  "ÇİVRİL MAHALLESİ":"SADABAD",
+  "ÇAYDURT MAHALLESİ":"SOKU",
+  "DAĞKENT MAHALLESİ":"SADABAD",
+  "DODURGA MAHALLESİ":"SOKU",
+  "GÖLYÜZÜ MAHALLESİ":"SOKU",
+  "ILICAKINIK MAHALLESİ":"HÜSEYİN SATI EKE",
+  "İHSANİYE MAHALLESİ":"SOKU",
+  "İZZET BAYSAL MAHALLESİ":"KOPUZLAR",
+  "KARACAAĞAÇ MAHALLESİ":"SOKU",
+  "KARACASU FATİH MAHALLESİ":"ÇAMLIYAYLA AHMEDİYE",
+  "KARAÇAYIR MAHALLESİ":"HÜSEYİN SATI EKE",
+  "KARAKÖY MAHALLESİ":"SADABAD",
+  "KARAMANLI MAHALLESİ":"SOKU",
+  "KASAPLAR MAHALLESİ":"SADABAD",
+  "KILIÇARSLAN MAHALLESİ":"KILIÇARSLAN",
+  "KÖROĞLU MAHALLESİ":"SOKU",
+  "KURUÇAY MAHALLESİ":"SOKU",
+  "KÜÇÜKBERK MAHALLESİ":"HÜSEYİN SATI EKE",
+  "KÜLTÜR MAHALLESİ":"HÜSEYİN SATI EKE",
+  "KÜRKÇÜLER MAHALLESİ":"SADABAD",
+  "OVADÜZÜ MAHALLESİ":"SOKU",
+  "PAŞAKÖY MAHALLESİ":"HÜSEYİN SATI EKE",
+  "SAĞLIK MAHALLESİ":"SOKU",
+  "SALIBEYLER MAHALLESİ":"SOKU",
+  "SANDALLAR MAHALLESİ":"HÜSEYİN SATI EKE",
+  "SARICALAR MAHALLESİ":"SOKU",
+  "SEMERKANT MAHALLESİ":"SOKU",
+  "SEYİT MAHALLESİ":"HÜSEYİN SATI EKE",
+  "SÜMER MAHALLESİ":"HÜSEYİN SATI EKE",
+  "TABAKLAR MAHALLESİ":"HÜSEYİN SATI EKE",
+  "TEPECİK MAHALLESİ":"HÜSEYİN SATI EKE",
+  "UMUTKENT MAHALLESİ":"SADABAD",
+  "YAŞAMKENT MAHALLESİ":"SADABAD",
+  "YENİMAHALLE MAHALLESİ":"SADABAD",
+  "YUKARISOKU MAHALLESİ":"SOKU"
+};
 
-const erkekMahalle={"AKPINAR MAHALLESİ":"HÜSEYİN SATI EKE","AKTAŞ MAHALLESİ":"HÜSEYİN SATI EKE","ALPAĞUT MAHALLESİ":"SADABAD","AŞAĞISOKU MAHALLESİ":"SOKU","BAHÇELİEVLER MAHALLESİ":"BOLU PROJE","BEŞKAVAKLAR MAHALLESİ":"BOLU PROJE","BORAZANLAR MAHALLESİ":"HÜSEYİN SATI EKE","BÜYÜKCAMİ MAHALLESİ":"SOKU","ÇAKMAKLAR MAHALLESİ":"BOLU PROJE","ÇIKINLAR MAHALLESİ":"SOKU","ÇİVRİL MAHALLESİ":"SADABAD","DAĞKENT MAHALLESİ":"SADABAD","DODURGA MAHALLESİ":"SOKU","GÖLYÜZÜ MAHALLESİ":"SOKU","ILICAKINIK MAHALLESİ":"HÜSEYİN SATI EKE","İHSANİYE MAHALLESİ":"SOKU","İZZET BAYSAL MAHALLESİ":"BOLU PROJE","KARACAAĞAÇ MAHALLESİ":"SOKU","KARACASU FATİH MAHALLESİ":"ÇAMLIYAYLA AHMEDİYE","KARAÇAYIR MAHALLESİ":"HÜSEYİN SATI EKE","KARAKÖY MAHALLESİ":"SADABAD","KARAMANLI MAHALLESİ":"SOKU","KASAPLAR MAHALLESİ":"SADABAD","KILIÇARSLAN MAHALLESİ":"KILIÇARSLAN","KÖROĞLU MAHALLESİ":"SOKU","KURUÇAY MAHALLESİ":"SOKU","KÜÇÜKBERK MAHALLESİ":"HÜSEYİN SATI EKE","KÜLTÜR MAHALLESİ":"HÜSEYİN SATI EKE","KÜRKÇÜLER MAHALLESİ":"SADABAD","OVADÜZÜ MAHALLESİ":"SOKU","PAŞAKÖY MAHALLESİ":"SADABAD","SAĞLIK MAHALLESİ":"SOKU","SALIBEYLER MAHALLESİ":"SOKU","SANDALLAR MAHALLESİ":"HÜSEYİN SATI EKE","SARICALAR MAHALLESİ":"SOKU","SEMERKANT MAHALLESİ":"SOKU","SEYİT MAHALLESİ":"HÜSEYİN SATI EKE","SÜMER MAHALLESİ":"HÜSEYİN SATI EKE","TABAKLAR MAHALLESİ":"HÜSEYİN SATI EKE","TEPECİK MAHALLESİ":"HÜSEYİN SATI EKE","UMUTKENT MAHALLESİ":"SADABAD","YAŞAMKENT MAHALLESİ":"SADABAD","YENİMAHALLE MAHALLESİ":"SADABAD","YUKARISOKU MAHALLESİ":"SOKU"};
+// ===== KIZ MAHALLE → KURUM =====
+const kizMahalle={
+  "AKPINAR MAHALLESİ":"HİLAL KIZ",
+  "AKTAŞ MAHALLESİ":"HİLAL KIZ",
+  "ALPAĞUT MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "AŞAĞISOKU MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "BAHÇELİEVLER MAHALLESİ":"HİLAL KIZ",
+  "BEŞKAVAKLAR MAHALLESİ":"HİLAL KIZ",
+  "BORAZANLAR MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "BÜYÜKCAMİ MAHALLESİ":"HİLAL KIZ",
+  "ÇAKMAKLAR MAHALLESİ":"HİLAL KIZ",
+  "ÇIKINLAR MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "ÇİVRİL MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "ÇAYDURT MAHALLESİ":"HİLAL KIZ",
+  "DAĞKENT MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "DODURGA MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "GÖLYÜZÜ MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "ILICAKINIK MAHALLESİ":"HİLAL KIZ",
+  "İHSANİYE MAHALLESİ":"HİLAL KIZ",
+  "İZZET BAYSAL MAHALLESİ":"HİLAL KIZ",
+  "KARACAAĞAÇ MAHALLESİ":"HİLAL KIZ",
+  "KARACASU FATİH MAHALLESİ":"HİLAL KIZ",
+  "KARAÇAYIR MAHALLESİ":"HİLAL KIZ",
+  "KARAKÖY MAHALLESİ":"HİLAL KIZ",
+  "KARAMANLI MAHALLESİ":"HİLAL KIZ",
+  "KASAPLAR MAHALLESİ":"HİLAL KIZ",
+  "KILIÇARSLAN MAHALLESİ":"HİLAL KIZ",
+  "KÖROĞLU MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "KURUÇAY MAHALLESİ":"HİLAL KIZ",
+  "KÜÇÜKBERK MAHALLESİ":"HİLAL KIZ",
+  "KÜLTÜR MAHALLESİ":"HİLAL KIZ",
+  "KÜRKÇÜLER MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "OKÇULAR MAHALLESİ":"OKÇULAR KIZ",
+  "OVADÜZÜ MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "PAŞAKÖY MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "SAĞLIK MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "SALIBEYLER MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "SANDALLAR MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "SARICALAR MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "SEMERKANT MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "SEYİT MAHALLESİ":"HİLAL KIZ",
+  "SULTANKÖY MAHALLESİ":"SULTANKÖY",
+  "SÜMER MAHALLESİ":"HİLAL KIZ",
+  "TABAKLAR MAHALLESİ":"HİLAL KIZ",
+  "TEPECİK MAHALLESİ":"HİLAL KIZ",
+  "UMUTKENT MAHALLESİ":"HİLAL KIZ",
+  "YAŞAMKENT MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "YENİMAHALLE MAHALLESİ":"BOLU FERHAN SULTAN KIZ",
+  "YUKARISOKU MAHALLESİ":"BOLU FERHAN SULTAN KIZ"
+};
 
-const kizMahalle={"AKPINAR MAHALLESİ":"HİLAL KIZ YURDU","AKTAŞ MAHALLESİ":"HİLAL KIZ YURDU","ALPAĞUT MAHALLESİ":"FERHAN SULTAN KIZ YURDU","AŞAĞISOKU MAHALLESİ":"FERHAN SULTAN KIZ YURDU","BAHÇELİEVLER MAHALLESİ":"HİLAL KIZ YURDU","BEŞKAVAKLAR MAHALLESİ":"HİLAL KIZ YURDU","BORAZANLAR MAHALLESİ":"FERHAN SULTAN KIZ YURDU","BÜYÜKCAMİ MAHALLESİ":"HİLAL KIZ YURDU","ÇAKMAKLAR MAHALLESİ":"HİLAL KIZ YURDU","ÇIKINLAR MAHALLESİ":"FERHAN SULTAN KIZ YURDU","ÇİVRİL MAHALLESİ":"FERHAN SULTAN KIZ YURDU","DAĞKENT MAHALLESİ":"FERHAN SULTAN KIZ YURDU","DODURGA MAHALLESİ":"FERHAN SULTAN KIZ YURDU","GÖLYÜZÜ MAHALLESİ":"FERHAN SULTAN KIZ YURDU","ILICAKINIK MAHALLESİ":"HİLAL KIZ YURDU","İHSANİYE MAHALLESİ":"HİLAL KIZ YURDU","İZZET BAYSAL MAHALLESİ":"HİLAL KIZ YURDU","KARACAAĞAÇ MAHALLESİ":"HİLAL KIZ YURDU","KARACASU FATİH MAHALLESİ":"HİLAL KIZ YURDU","KARAÇAYIR MAHALLESİ":"HİLAL KIZ YURDU","KARAKÖY MAHALLESİ":"HİLAL KIZ YURDU","KARAMANLI MAHALLESİ":"HİLAL KIZ YURDU","KASAPLAR MAHALLESİ":"HİLAL KIZ YURDU","KILIÇARSLAN MAHALLESİ":"HİLAL KIZ YURDU","KÖROĞLU MAHALLESİ":"FERHAN SULTAN KIZ YURDU","KURUÇAY MAHALLESİ":"HİLAL KIZ YURDU","KÜÇÜKBERK MAHALLESİ":"HİLAL KIZ YURDU","KÜLTÜR MAHALLESİ":"HİLAL KIZ YURDU","KÜRKÇÜLER MAHALLESİ":"FERHAN SULTAN KIZ YURDU","OVADÜZÜ MAHALLESİ":"FERHAN SULTAN KIZ YURDU","PAŞAKÖY MAHALLESİ":"FERHAN SULTAN KIZ YURDU","SAĞLIK MAHALLESİ":"FERHAN SULTAN KIZ YURDU","SALIBEYLER MAHALLESİ":"FERHAN SULTAN KIZ YURDU","SANDALLAR MAHALLESİ":"FERHAN SULTAN KIZ YURDU","SARICALAR MAHALLESİ":"FERHAN SULTAN KIZ YURDU","SEMERKANT MAHALLESİ":"FERHAN SULTAN KIZ YURDU","SEYİT MAHALLESİ":"HİLAL KIZ YURDU","SÜMER MAHALLESİ":"HİLAL KIZ YURDU","TABAKLAR MAHALLESİ":"HİLAL KIZ YURDU","TEPECİK MAHALLESİ":"HİLAL KIZ YURDU","UMUTKENT MAHALLESİ":"HİLAL KIZ YURDU","YAŞAMKENT MAHALLESİ":"FERHAN SULTAN KIZ YURDU","YENİMAHALLE MAHALLESİ":"FERHAN SULTAN KIZ YURDU","YUKARISOKU MAHALLESİ":"FERHAN SULTAN KIZ YURDU"};
-
-const erkekDiger=["BOLU PROJE","HÜSEYİN SATI EKE","SOKU","SADABAD","KILIÇARSLAN","ÇAMLIYAYLA AHMEDİYE"];
-const kizDiger=["HİLAL KIZ YURDU","FERHAN SULTAN KIZ YURDU"];
+// ===== SADECE GÜNDÜZLܠKURUMLAR (yatılı almaz) =====
+const yatiliOlmaz=["KILIÇARSLAN","ÇAMLIYAYLA AHMEDİYE","EMİRLER","SEYİT KAMİL BEY","SULTANKÖY","OKÇULAR KIZ"];
+// Yatılı seçince alternatif kurum
 const yatiliAlternatif={"KILIÇARSLAN":"SADABAD","ÇAMLIYAYLA AHMEDİYE":"HÜSEYİN SATI EKE"};
-const yatiliOlmaz=["KILIÇARSLAN","ÇAMLIYAYLA AHMEDİYE"];
+// ÇAYDURT yatılı → SOKU
+const yatiliCaydurt="SOKU";
 
-const erkekIlceKurum={"GÖYNÜK":"GÖYNÜK","KIBRISCIK":"KIBRISCIK","MENGEN":"MENGEN","MUDURNU":"MUDURNU","SEBEN":"SEBEN","YENİÇAĞA":"YENİÇAĞA","DÖRTDİVAN":"DÖRTDİVAN","TAŞKESTİ":"TAŞKESTİ"};
-const kizIlceKurum={"GEREDE KIZ":"GEREDE HAFİZE SULTAN KIZ","GÖYNÜK KIZ":"GÖYNÜK KIZ","MENGEN KIZ":"MENGEN KIZ","MUDURNU KIZ":"MUDURNU KIZ","SEBEN KIZ":"SEBEN KIZ","DÖRTDİVAN KIZ":"DÖRTDİVAN KIZ","YENİÇAĞA":"YENİÇAĞA","KIBRISCIK":"KIBRISCIK","TAŞKESTİ":"TAŞKESTİ"};
+// Gündüzlü seçince SEYİT KAMİL BEY alternatif çıkacak mahalleler
+const seytKamilMahalleler=["SEYİT MAHALLESİ","SANDALLAR MAHALLESİ","PAŞAKÖY MAHALLESİ"];
 
-let state={currentStep:1,cinsiyet:"",sinif:0,konaklama:"",konum:"",mahalle:"",kurum:"",ilce:"",adiSoyadi:"",okul:"",babaTel:"",anneTel:"",adres:""};
+// ===== İLÇE KURUMLARI =====
+const erkekIlceKurum={
+  "GÖYNÜK":"GÖYNÜK","KIBRISCIK":"KIBRISCIK","MENGEN":"MENGEN",
+  "MUDURNU":"MUDURNU MERKEZ","SEBEN":"SEBEN","YENİÇAĞA":"YENİÇAĞA",
+  "DÖRTDİVAN":"DÖRTDİVAN","TAŞKESTİ":"TAŞKESTİ"
+};
+const kizIlceKurum={
+  "GEREDE KIZ":"GEREDE HAFİZE SULTAN KIZ",
+  "AKÇABEY KIZ":"AKÇABEY KIZ",
+  "GÖYNÜK KIZ":"GÖYNÜK KIZ","MENGEN KIZ":"MENGEN KIZ",
+  "MUDURNU KIZ":"MUDURNU KIZ","SEBEN KIZ":"SEBEN KIZ",
+  "DÖRTDİVAN KIZ":"DÖRTDİVAN KIZ","YENİÇAĞA":"YENİÇAĞA",
+  "KIBRISCIK":"KIBRISCIK","TAŞKESTİ":"TAŞKESTİ"
+};
+
+// Erkek alternatif kurumlar (farklı kurum seç)
+const erkekDiger=["KOPUZLAR","HÜSEYİN SATI EKE","SOKU","SADABAD","KILIÇARSLAN","ÇAMLIYAYLA AHMEDİYE","EMİRLER","SEYİT KAMİL BEY","SÜLEYMANİYE"];
+const kizDiger=["HİLAL KIZ","BOLU FERHAN SULTAN KIZ","KARACASU KIZ","OKÇULAR KIZ","SULTANKÖY"];
+
+let state={currentStep:1,cinsiyet:"",sinif:0,konaklama:"",konum:"",mahalle:"",kurum:"",ilce:"",anneAdi:"",babaAdi:"",adiSoyadi:"",okul:"",babaTel:"",anneTel:"",adres:""};
 
 function updateProgress(step){
   document.getElementById("progressBar").style.width=Math.round(((step-1)/6)*100)+"%";
-  const l=["","🌸 Cinsiyet","📚 Sınıf","🏕️ Program","📍 Konum","🗺️ Detay","📝 Bilgiler"];
+  var l=["","🌸 Cinsiyet","📚 Sınıf","🏕️ Program","📍 Konum","🗺️ Detay","📝 Bilgiler"];
   document.getElementById("progressLabel").textContent="Adım "+step+" / 6 — "+(l[step]||"");
 }
 
@@ -432,8 +545,7 @@ function goStep2(){
   var s=document.querySelector('input[name="cinsiyet"]:checked');
   if(!s){document.getElementById("err-cinsiyet").classList.add("show");return;}
   document.getElementById("err-cinsiyet").classList.remove("show");
-  state.cinsiyet=s.value;
-  goTo(2);
+  state.cinsiyet=s.value;goTo(2);
 }
 
 function updateSinifInfo(){
@@ -453,16 +565,13 @@ function goStep3(){
   if(!sinif){document.getElementById("err-sinif").classList.add("show");document.getElementById("sinif").classList.add("invalid");return;}
   document.getElementById("err-sinif").classList.remove("show");document.getElementById("sinif").classList.remove("invalid");
   state.sinif=sinif;
-  var c=state.cinsiyet;
-  var opts=[];
-  var info="";
+  var c=state.cinsiyet;var opts=[];var info="";
   if(sinif<=4){opts=["Gündüzlü"];info="⚠️ 2, 3 ve 4. sınıf öğrencileri yalnızca <strong>Gündüzlü</strong> programa katılabilir.";}
   else if(c==="kiz"&&sinif===8){opts=["Yatılı"];info="⚠️ 8. sınıf kız öğrenciler yalnızca <strong>Karacasu Kız Yurdu</strong>na yatılı kayıt olabilir.";}
   else if(c==="kiz"&&sinif>=9){opts=["Gündüzlü"];info="⚠️ 9-12. sınıf kız öğrenciler yalnızca <strong>Karacasu Kursu</strong>na gündüzlü kayıt olabilir.";}
   else{opts=["Gündüzlü","Yatılı"];info="✅ Gündüzlü veya yatılı programa katılabilirsiniz.";}
   document.getElementById("konaklama-info").innerHTML=info;
-  var wrap=document.getElementById("konaklama-options");
-  wrap.innerHTML="";
+  var wrap=document.getElementById("konaklama-options");wrap.innerHTML="";
   opts.forEach(function(opt){
     wrap.innerHTML+='<label class="option-card"><input type="radio" name="konaklama" value="'+opt.toLowerCase()+'" onchange="selectOption(this)"><span>'+(opt==="Gündüzlü"?"🌞":"🌙")+" "+opt+" Programa Katılmak İstiyorum</span></label>";
   });
@@ -474,8 +583,7 @@ function goStep4(){
   var s=document.querySelector('input[name="konaklama"]:checked');
   if(!s){document.getElementById("err-konaklama").classList.add("show");return;}
   document.getElementById("err-konaklama").classList.remove("show");
-  state.konaklama=s.value;
-  goTo(4);
+  state.konaklama=s.value;goTo(4);
 }
 
 function goStep5(){
@@ -483,11 +591,10 @@ function goStep5(){
   if(!s){document.getElementById("err-konum").classList.add("show");return;}
   document.getElementById("err-konum").classList.remove("show");
   state.konum=s.value;
-  var sinif=state.sinif;
-  var c=state.cinsiyet;
-  if(c==="kiz"&&sinif===8){state.kurum="KARACASU KIZ YURDU";goTo(6);return;}
-  if(c==="kiz"&&sinif>=9){state.kurum="KARACASU KURSU";goTo(6);return;}
-  if(c==="erkek"&&sinif>=8&&s.value==="merkez"){state.kurum="SÜLEYMANİYE YURDU";goTo(6);return;}
+  var sinif=state.sinif,c=state.cinsiyet;
+  if(c==="kiz"&&sinif===8){state.kurum="KARACASU KIZ";goTo(6);return;}
+  if(c==="kiz"&&sinif>=9){state.kurum="KARACASU KIZ";goTo(6);return;}
+  if(c==="erkek"&&sinif>=8&&s.value==="merkez"){state.kurum="SÜLEYMANİYE";goTo(6);return;}
   if(s.value==="merkez"){
     document.getElementById("mahalle-wrap").style.display="block";
     document.getElementById("ilce-wrap").style.display="none";
@@ -502,7 +609,7 @@ function goStep5(){
     document.getElementById("step5-title").textContent="İlçe Seçimi";
     document.getElementById("step5-desc").textContent="Yaz kampına katılmak istediğiniz ilçeyi seçiniz.";
     var erkekIlceler=["GEREDE","GÖYNÜK","KIBRISCIK","MENGEN","MUDURNU","SEBEN","YENİÇAĞA","DÖRTDİVAN","TAŞKESTİ"];
-    var kizIlceler=["GEREDE KIZ","GÖYNÜK KIZ","MENGEN KIZ","MUDURNU KIZ","SEBEN KIZ","DÖRTDİVAN KIZ","YENİÇAĞA","KIBRISCIK","TAŞKESTİ"];
+    var kizIlceler=["GEREDE KIZ","AKÇABEY KIZ","GÖYNÜK KIZ","MENGEN KIZ","MUDURNU KIZ","SEBEN KIZ","DÖRTDİVAN KIZ","YENİÇAĞA","KIBRISCIK","TAŞKESTİ"];
     var ilceler=c==="erkek"?erkekIlceler:kizIlceler;
     var ilceSel=document.getElementById("ilce");
     ilceSel.innerHTML="<option value=''>— İlçe Seçiniz —</option>";
@@ -521,15 +628,23 @@ function showKurum(){
   var c=state.cinsiyet;
   var kurum=c==="erkek"?erkekMahalle[mahalle]:kizMahalle[mahalle];
   if(!kurum) kurum="Belirlenemedi";
-  var sub=c==="erkek"?"Erkek Yurdu":"Kız Yurdu";
-  if(yatiliAlternatif[kurum]&&state.konaklama==="yatılı"){
-    kurum=yatiliAlternatif[kurum];
-    sub+=" (Yatılı için yönlendirildi)";
+
+  // Çaydurt + yatılı → SOKU
+  if(mahalle==="ÇAYDURT MAHALLESİ"&&state.konaklama==="yatılı"){
+    kurum="SOKU";
   }
+  // Yatılı seçilmiş ama kurum yatılı almıyorsa alternatife yönlendir
+  if(state.konaklama==="yatılı"&&yatiliAlternatif[kurum]){
+    kurum=yatiliAlternatif[kurum];
+  }
+
   state.kurum=kurum;
+  var sub=c==="erkek"?"Erkek Yurdu":"Kız Yurdu";
   document.getElementById("kurum-name").textContent=kurum;
   document.getElementById("kurum-sub").textContent=sub;
   document.getElementById("kurum-result").classList.add("show");
+
+  // Alternatif kurum listesi
   var dw=document.getElementById("diger-wrap");
   var ds=document.getElementById("diger-kurum");
   dw.style.display="block";
@@ -537,15 +652,21 @@ function showKurum(){
   var alternatifler=c==="erkek"?erkekDiger:kizDiger;
   alternatifler.filter(function(k){
     if(k===kurum) return false;
+    // Yatılı ise sadece gündüzlü kurumları gösterme
     if(state.konaklama==="yatılı"&&yatiliOlmaz.includes(k)) return false;
     return true;
   }).forEach(function(k){ds.innerHTML+="<option value='"+k+"'>"+k+"</option>";});
+
+  // Gündüzlü + Seyit Kamil mahalleleri → SEYİT KAMİL BEY alternatif ekle
+  if(c==="erkek"&&state.konaklama==="gündüzlü"&&seytKamilMahalleler.includes(mahalle)){
+    if(!ds.querySelector('option[value="SEYİT KAMİL BEY"]')){
+      ds.innerHTML+='<option value="SEYİT KAMİL BEY">SEYİT KAMİL BEY</option>';
+    }
+  }
 }
 
 function goStep6(){
-  var konum=state.konum;
-  var c=state.cinsiyet;
-  var s=state.sinif;
+  var konum=state.konum,c=state.cinsiyet,s=state.sinif;
   if(c==="erkek"&&s>=8&&konum==="merkez"){goTo(6);return;}
   if(konum==="merkez"){
     var m=document.getElementById("mahalle").value;
@@ -567,10 +688,10 @@ function goStep6(){
     if(c==="erkek"&&il==="GEREDE"){
       var yatili=state.konaklama==="yatılı";
       if((s===7||s===8)&&yatili){
-        var sec=confirm("Gerede için kurum seçiniz:\nOK: GEREDE ESENTEPE (Lise Yurdu)\nİptal: GEREDE");
-        state.kurum=sec?"GEREDE ESENTEPE":"GEREDE";
+        var sec=confirm("Gerede için kurum seçiniz: Tamam: GEREDE ESENTEPE / İptal: GEREDE MERKEZ");
+        state.kurum=sec?"GEREDE ESENTEPE":"GEREDE MERKEZ";
       } else {
-        state.kurum="GEREDE";
+        state.kurum="GEREDE MERKEZ";
       }
     } else if(c==="erkek"&&erkekIlceKurum[il]){
       state.kurum=erkekIlceKurum[il];
@@ -581,16 +702,58 @@ function goStep6(){
   goTo(6);
 }
 
+function formatTel(input){
+  var digits=input.value.replace(/[^0-9]/g,"");
+  if(digits.length===0){input.value="(0";return;}
+  if(!digits.startsWith("0")) digits="0"+digits;
+  if(digits.length>11) digits=digits.substring(0,11);
+  var result="";
+  if(digits.length<=4) result="("+digits;
+  else if(digits.length<=7) result="("+digits.substring(0,4)+") "+digits.substring(4);
+  else if(digits.length<=9) result="("+digits.substring(0,4)+") "+digits.substring(4,7)+" "+digits.substring(7);
+  else result="("+digits.substring(0,4)+") "+digits.substring(4,7)+" "+digits.substring(7,9)+" "+digits.substring(9,11);
+  input.value=result;
+}
+function initTel(input){if(!input.value) input.value="(0";}
+
 function submitForm(){
   var valid=true;
-  [["adi-soyadi","err-adi","adiSoyadi"],["okul","err-okul","okul"],["baba-tel","err-baba","babaTel"],["anne-tel","err-anne","anneTel"],["adres","err-adres","adres"]].forEach(function(arr){
+  // Ad soyad, okul, adres zorunlu
+  [["adi-soyadi","err-adi","adiSoyadi"],["anne-adi","err-anne-adi","anneAdi"],["baba-adi","err-baba-adi","babaAdi"],["okul","err-okul","okul"],["adres","err-adres","adres"]].forEach(function(arr){
     var el=document.getElementById(arr[0]);
+    if(!el) return;
     if(!el.value.trim()){document.getElementById(arr[1]).classList.add("show");el.classList.add("invalid");valid=false;}
     else{document.getElementById(arr[1]).classList.remove("show");el.classList.remove("invalid");state[arr[2]]=el.value.trim().toUpperCase();}
   });
+
+  // Telefon: en az biri dolu olmalı
+  var bTel=document.getElementById("baba-tel").value.replace(/[^0-9]/g,"");
+  var aTel=document.getElementById("anne-tel").value.replace(/[^0-9]/g,"");
+  if(bTel.length<10&&aTel.length<10){
+    document.getElementById("err-tel").classList.add("show");
+    valid=false;
+  } else {
+    document.getElementById("err-tel").classList.remove("show");
+    state.babaTel=document.getElementById("baba-tel").value;
+    state.anneTel=document.getElementById("anne-tel").value;
+  }
+
   if(!document.getElementById("kvkk").checked){document.getElementById("err-kvkk").classList.add("show");valid=false;}
   else document.getElementById("err-kvkk").classList.remove("show");
   if(!valid) return;
+
+  // Google Sheets'e gönder
+  var formData={
+    cinsiyet:state.cinsiyet,sinif:state.sinif,konaklama:state.konaklama,
+    konum:state.konum,mahalle:state.mahalle,ilce:state.ilce,kurum:state.kurum,
+    anneAdi:state.anneAdi,babaAdi:state.babaAdi,
+    adiSoyadi:state.adiSoyadi,okul:state.okul,
+    babaTel:state.babaTel,anneTel:state.anneTel,adres:state.adres
+  };
+  fetch("https://script.google.com/macros/s/AKfycby12VkjT7wDXrotSDAKTNo9nVE5NckpU3bpVPswNfPiYiUhP48LniIOrQETrWCDOUYz/exec",{
+    method:"POST",body:JSON.stringify(formData)
+  }).catch(function(err){console.log(err);});
+
   var rows=[
     ["Cinsiyet",state.cinsiyet==="erkek"?"Erkek":"Kız"],
     ["Sınıf",state.sinif+". Sınıf"],
@@ -600,40 +763,22 @@ function submitForm(){
   if(state.mahalle) rows.push(["Mahalle",state.mahalle]);
   if(state.ilce) rows.push(["İlçe",state.ilce]);
   if(state.kurum) rows.push(["Kurum",state.kurum]);
-  rows.push(["Öğrenci",state.adiSoyadi],["Okul",state.okul],["Baba Tel",state.babaTel],["Anne Tel",state.anneTel]);
+  rows.push(["Öğrenci",state.adiSoyadi]);
+  if(state.anneAdi) rows.push(["Anne Adı",state.anneAdi]);
+  if(state.babaAdi) rows.push(["Baba Adı",state.babaAdi]);
+  rows.push(["Okul",state.okul],["Baba Tel",state.babaTel],["Anne Tel",state.anneTel]);
   document.getElementById("summary-table").innerHTML=rows.map(function(r){
     return '<div class="summary-row"><span class="s-label">'+r[0]+'</span><span class="s-val">'+r[1]+"</span></div>";
   }).join("");
-  // Google Sheets'e gönder
-  var formData = {
-    cinsiyet: state.cinsiyet,
-    sinif: state.sinif,
-    konaklama: state.konaklama,
-    konum: state.konum,
-    mahalle: state.mahalle,
-    ilce: state.ilce,
-    kurum: state.kurum,
-    adiSoyadi: state.adiSoyadi,
-    okul: state.okul,
-    babaTel: state.babaTel,
-    anneTel: state.anneTel,
-    adres: state.adres
-  };
-  fetch("https://script.google.com/macros/s/AKfycby12VkjT7wDXrotSDAKTNo9nVE5NckpU3bpVPswNfPiYiUhP48LniIOrQETrWCDOUYz/exec", {
-    method: "POST",
-    body: JSON.stringify(formData)
-  }).catch(function(err){console.log(err);});
-    goTo("success");
-  var sn = 5;
-  var timer = setInterval(function(){
+
+  var sn=5;
+  var timer=setInterval(function(){
     sn--;
-    var el = document.getElementById("countdown");
-    if(el) el.textContent = sn;
-    if(sn <= 0){
-      clearInterval(timer);
-      window.location.href = "https://www.yazkampimiz.com";
-    }
-  }, 1000);
+    var el=document.getElementById("countdown");
+    if(el) el.textContent=sn;
+    if(sn<=0){clearInterval(timer);window.location.href="https://www.yazkampimiz.com";}
+  },1000);
+  goTo("success");
 }
 </script>
 </body>

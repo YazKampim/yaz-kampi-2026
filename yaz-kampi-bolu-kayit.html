@@ -324,16 +324,6 @@ hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0;
       <div class="step-title">Kayıt Bilgileri</div>
       <div class="step-desc">Son adım! Bilgileri eksiksiz doldurunuz.</div>
       <div class="field">
-        <label>Anne Adı <span class="req">*</span></label>
-        <input type="text" id="anne-adi" placeholder="Anne Adı">
-        <div class="err-msg" id="err-anne-adi">⚠️ Anne adı boş bırakılamaz.</div>
-      </div>
-      <div class="field">
-        <label>Baba Adı <span class="req">*</span></label>
-        <input type="text" id="baba-adi" placeholder="Baba Adı">
-        <div class="err-msg" id="err-baba-adi">⚠️ Baba adı boş bırakılamaz.</div>
-      </div>
-      <div class="field">
         <label>Öğrenci Adı ve Soyadı <span class="req">*</span></label>
         <input type="text" id="adi-soyadi" placeholder="Ad Soyad">
         <div class="err-msg" id="err-adi">⚠️ Ad Soyad boş bırakılamaz.</div>
@@ -344,14 +334,28 @@ hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0;
         <div class="err-msg" id="err-okul">⚠️ Okul adı boş bırakılamaz.</div>
       </div>
       <div class="field">
-        <label>Baba İletişim No <span class="req">*</span></label>
+        <label>Anne Adı <span class="req">*</span></label>
+        <input type="text" id="anne-adi" placeholder="Anne Adı">
+        <div class="err-msg" id="err-anne-adi">⚠️ Anne adı boş bırakılamaz.</div>
+      </div>
+      <div class="field">
+        <label>Anne İletişim No <span class="req">*</span></label>
+        <input type="tel" id="anne-tel" placeholder="(0___) ___ __ __" maxlength="16" oninput="formatTel(this)" onfocus="initTel(this)">
+        <div class="err-msg" id="err-anne">⚠️ Telefon numarası boş bırakılamaz.</div>
+      </div>
+      <div class="field">
+        <label>Baba Adı <span class="req">*</span></label>
+        <input type="text" id="baba-adi" placeholder="Baba Adı">
+        <div class="err-msg" id="err-baba-adi">⚠️ Baba adı boş bırakılamaz.</div>
+      </div>
+      <div class="field">
+        <label>Baba İletişim No</label>
         <input type="tel" id="baba-tel" placeholder="(0___) ___ __ __" maxlength="16" oninput="formatTel(this)" onfocus="initTel(this)">
         <div class="err-msg" id="err-baba">⚠️ Telefon numarası boş bırakılamaz.</div>
       </div>
       <div class="field">
-        <label>Anne İletişim No</label>
-        <input type="tel" id="anne-tel" placeholder="(0___) ___ __ __" maxlength="16" oninput="formatTel(this)" onfocus="initTel(this)">
-        <div class="err-msg" id="err-anne">⚠️ Telefon numarası boş bırakılamaz.</div>
+        <label>Öğrenci Cep No</label>
+        <input type="tel" id="ogrenci-tel" placeholder="(0___) ___ __ __" maxlength="16" oninput="formatTel(this)" onfocus="initTel(this)">
       </div>
       <div class="err-msg" id="err-tel" style="margin-bottom:10px;">⚠️ En az bir telefon numarası girilmelidir.</div>
       <div class="field">
@@ -360,6 +364,14 @@ hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0;
         <div class="err-msg" id="err-adres">⚠️ Adres boş bırakılamaz.</div>
       </div>
       <hr class="divider">
+      <div class="field">
+        <label class="option-card" style="align-items:flex-start;gap:14px;">
+          <input type="checkbox" id="bilgi-alinsin" onchange="this.closest('.option-card').classList.toggle('selected',this.checked)" style="margin-top:2px;width:20px;height:20px;accent-color:var(--green);flex-shrink:0;cursor:pointer;">
+          <span style="font-size:13px;font-weight:600;line-height:1.5;color:var(--gray);">
+            Yaz Kampınız Hakkında Bilgi Almak Üzere Aranmak İstiyorum.
+          </span>
+        </label>
+      </div>
       <div class="field">
         <label class="option-card" style="align-items:flex-start;gap:14px;">
           <input type="checkbox" id="kvkk" onchange="this.closest('.option-card').classList.toggle('selected',this.checked)" style="margin-top:2px;width:20px;height:20px;accent-color:var(--green);flex-shrink:0;cursor:pointer;">
@@ -507,8 +519,8 @@ const erkekIlceKurum={
   "DÖRTDİVAN":"DÖRTDİVAN","TAŞKESTİ":"TAŞKESTİ"
 };
 const kizIlceKurum={
-  "GEREDE KIZ":"GEREDE HAFİZE SULTAN KIZ",
-  "AKÇABEY KIZ":"AKÇABEY KIZ",
+  "GEREDE HAFİZE SULTAN KIZ":"GEREDE HAFİZE SULTAN KIZ",
+  "GEREDE AKÇABEY KIZ":"GEREDE AKÇABEY KIZ",
   "GÖYNÜK KIZ":"GÖYNÜK KIZ","MENGEN KIZ":"MENGEN KIZ",
   "MUDURNU KIZ":"MUDURNU KIZ","SEBEN KIZ":"SEBEN KIZ",
   "DÖRTDİVAN KIZ":"DÖRTDİVAN KIZ","YENİÇAĞA":"YENİÇAĞA",
@@ -609,7 +621,7 @@ function goStep5(){
     document.getElementById("step5-title").textContent="İlçe Seçimi";
     document.getElementById("step5-desc").textContent="Yaz kampına katılmak istediğiniz ilçeyi seçiniz.";
     var erkekIlceler=["GEREDE","GÖYNÜK","KIBRISCIK","MENGEN","MUDURNU","SEBEN","YENİÇAĞA","DÖRTDİVAN","TAŞKESTİ"];
-    var kizIlceler=["GEREDE KIZ","AKÇABEY KIZ","GÖYNÜK KIZ","MENGEN KIZ","MUDURNU KIZ","SEBEN KIZ","DÖRTDİVAN KIZ","YENİÇAĞA","KIBRISCIK","TAŞKESTİ"];
+    var kizIlceler=["GEREDE HAFİZE SULTAN KIZ","GEREDE AKÇABEY KIZ","GÖYNÜK KIZ","MENGEN KIZ","MUDURNU KIZ","SEBEN KIZ","DÖRTDİVAN KIZ","YENİÇAĞA","KIBRISCIK","TAŞKESTİ"];
     var ilceler=c==="erkek"?erkekIlceler:kizIlceler;
     var ilceSel=document.getElementById("ilce");
     ilceSel.innerHTML="<option value=''>— İlçe Seçiniz —</option>";

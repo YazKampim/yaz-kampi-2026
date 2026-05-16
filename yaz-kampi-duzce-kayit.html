@@ -760,7 +760,7 @@ function goStep5(){
       ilceSel.innerHTML+="<option>"+il+"</option>";
     });
     document.getElementById("ilce-info").style.display="block";
-    document.getElementById("ilce-info").innerHTML="✅ İlçe yurduna gündüzlü veya yatılı kayıt olabilirsiniz.";
+    document.getElementById("ilce-info").innerHTML=state.sinif<=4?"⚠️ 2, 3 ve 4. sınıf öğrencileri yalnızca <strong>Gündüzlü</strong> programa katılabilir.":"✅ İlçe yurduna gündüzlü veya yatılı kayıt olabilirsiniz.";
   }
   goTo(5);
 }

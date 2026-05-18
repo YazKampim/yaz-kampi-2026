@@ -317,10 +317,28 @@ hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0;
       <div id="ilce-wrap" style="display:none">
         <div class="field">
           <label>İlçenizi Seçiniz <span class="req">*</span></label>
-          <select id="ilce"><option value="">— İlçe Seçiniz —</option></select>
+          <select id="ilce" onchange="onIlceChange()"><option value="">— İlçe Seçiniz —</option></select>
           <div class="err-msg" id="err-ilce">⚠️ Lütfen ilçe seçiniz.</div>
         </div>
         <div class="info-box" id="ilce-info" style="display:none"></div>
+        <div id="eregliMahalleWrap" style="display:none">
+          <div class="field">
+            <label>Mahallenizi Seçiniz <span class="req">*</span></label>
+            <select id="eregliMahalle" onchange="showEregliKurum()"><option value="">— Mahalle Seçiniz —</option></select>
+            <div class="err-msg" id="err-eregliMahalle">⚠️ Lütfen mahalle seçiniz.</div>
+          </div>
+          <div class="kurum-result" id="eregliKurumResult">
+            <div class="kurum-label">🏫 Yönlendirildiğiniz Kurum</div>
+            <div class="kurum-name" id="eregliKurumName">—</div>
+            <div class="kurum-sub" id="eregliKurumSub"></div>
+          </div>
+          <div id="eregliDigerWrap" style="display:none">
+            <div class="field">
+              <label>Farklı bir kurum seçmek ister misiniz?</label>
+              <select id="eregliDigerKurum"><option value="">— Hayır, önerilen kuruma gidiyorum —</option></select>
+            </div>
+          </div>
+        </div>
       </div>
       <button class="btn-primary" onclick="goStep6()" style="margin-top:6px">Devam Et →</button>
       <button class="btn-secondary" onclick="goTo(4)">← Geri</button>
@@ -496,7 +514,7 @@ const erkekYatiliKural={
   "DEVREK ÇAYDEĞİRMENİ":{567:true,8:true,912:false},
   "DEVREK EĞERCİ":{567:true,8:true,912:false},
   "DEVREK GÜNEŞ":{567:false,8:true,912:true},
-  "EREĞLİ KIŞLA PROJE":{567:true,8:true,912:false},
+  "EREĞLİ KIŞLA":{567:true,8:true,912:false},
   "EREĞLİ YEŞİLTEPE":{567:true,8:true,912:false},
   "EREĞLİ YILDIZ":{567:false,8:true,912:true},
   "FENER":{567:true,8:true,912:false},
@@ -532,7 +550,7 @@ const erkekIlceKurum={
   "ALAPLI":"ALAPLI ÇAMLICA",
   "ÇAYCUMA":"ÇAYCUMA AKARPINAR",
   "DEVREK":"DEVREK AYYILDIZ",
-  "EREĞLİ":"EREĞLİ KIŞLA PROJE",
+  "EREĞLİ":"EREĞLİ KIŞLA",
   "GÖKÇEBEY":"GÖKÇEBEY",
   "KİLİMLİ":"KİLİMLİ",
   "ORMANLI":"ORMANLI YEŞİLMEŞE",
@@ -549,6 +567,71 @@ const kizIlceKurum={
   "KİLİMLİ":"KİLİMLİ HİSARTEPE KIZ",
   "PERŞEMBE":"PERŞEMBE KIZ"
 };
+
+const ereğliErkekMahalle={
+  "AKARCA MAHALLESİ":"EREĞLİ KIŞLA",
+  "BAĞLIK MAHALLESİ":"EREĞLİ KIŞLA",
+  "BALI MAHALLESİ":"EREĞLİ KIŞLA",
+  "BELEN MAHALLESİ":"EREĞLİ YEŞİLTEPE",
+  "BELEN YENİ MAHALLESİ":"EREĞLİ YEŞİLTEPE",
+  "BÖLÜCEK MAHALLESİ":"EREĞLİ KIŞLA",
+  "DAĞLAR MAHALLESİ":"EREĞLİ KIŞLA",
+  "DELİLER MAHALLESİ":"EREĞLİ YEŞİLTEPE",
+  "ELMATEPE MAHALLESİ":"EREĞLİ KIŞLA",
+  "GÖKTEPE MAHALLESİ":"EREĞLİ KIŞLA",
+  "GÜLDERE MAHALLESİ":"EREĞLİ KIŞLA",
+  "HAMZAFAKİLİ MAHALLESİ":"EREĞLİ KIŞLA",
+  "KIYICAK MAHALLESİ":"EREĞLİ KIŞLA",
+  "KIRMACI MAHALLESİ":"EREĞLİ KIŞLA",
+  "KIRMANLI MAHALLESİ":"EREĞLİ KIŞLA",
+  "KIŞLA MAHALLESİ":"EREĞLİ KIŞLA",
+  "KAVAKLIK MAHALLESİ":"EREĞLİ YEŞİLTEPE",
+  "KEPEZ MAHALLESİ":"EREĞLİ YEŞİLTEPE",
+  "KESTANECİ MAHALLESİ":"EREĞLİ KIŞLA",
+  "MURTAZA MAHALLESİ":"EREĞLİ KIŞLA",
+  "MÜFTÜ MAHALLESİ":"EREĞLİ KIŞLA",
+  "ÖMERLİ MAHALLESİ":"EREĞLİ YEŞİLTEPE",
+  "ORHANLAR MAHALLESİ":"EREĞLİ KIŞLA",
+  "ÖREN MAHALLESİ":"EREĞLİ YEŞİLTEPE",
+  "SARIKOKMAZ MAHALLESİ":"EREĞLİ YEŞİLTEPE",
+  "SÜLEYMANLAR MAHALLESİ":"EREĞLİ KIŞLA",
+  "TOPÇALI MAHALLESİ":"EREĞLİ KIŞLA",
+  "UZUNMEHMET MAHALLESİ":"EREĞLİ KIŞLA"
+};
+
+const ereğliKizMahalle={
+  "AKARCA MAHALLESİ":"EREĞLİ GÜLTEPE KIZ",
+  "BAĞLIK MAHALLESİ":"EREĞLİ GÜLTEPE KIZ",
+  "BALI MAHALLESİ":"EREĞLİ GÜLTEPE KIZ",
+  "BELEN MAHALLESİ":"EREĞLİ FERHAN SULTAN KIZ",
+  "BELEN YENİ MAHALLESİ":"EREĞLİ FERHAN SULTAN KIZ",
+  "BÖLÜCEK MAHALLESİ":"EREĞLİ FERHAN SULTAN KIZ",
+  "DAĞLAR MAHALLESİ":"EREĞLİ FERHAN SULTAN KIZ",
+  "DELİLER MAHALLESİ":"EREĞLİ FERHAN SULTAN KIZ",
+  "ELMATEPE MAHALLESİ":"EREĞLİ FERHAN SULTAN KIZ",
+  "GÖKTEPE MAHALLESİ":"EREĞLİ GÜLTEPE KIZ",
+  "GÜLDERE MAHALLESİ":"EREĞLİ GÜLTEPE KIZ",
+  "HAMZAFAKİLİ MAHALLESİ":"EREĞLİ FERHAN SULTAN KIZ",
+  "KIYICAK MAHALLESİ":"EREĞLİ GÜLTEPE KIZ",
+  "KIRMACI MAHALLESİ":"EREĞLİ GÜLTEPE KIZ",
+  "KIRMANLI MAHALLESİ":"EREĞLİ GÜLTEPE KIZ",
+  "KIŞLA MAHALLESİ":"EREĞLİ FERHAN SULTAN KIZ",
+  "KAVAKLIK MAHALLESİ":"EREĞLİ FERHAN SULTAN KIZ",
+  "KEPEZ MAHALLESİ":"EREĞLİ FERHAN SULTAN KIZ",
+  "KESTANECİ MAHALLESİ":"EREĞLİ GÜLTEPE KIZ",
+  "MURTAZA MAHALLESİ":"EREĞLİ GÜLTEPE KIZ",
+  "MÜFTÜ MAHALLESİ":"EREĞLİ GÜLTEPE KIZ",
+  "ÖMERLİ MAHALLESİ":"EREĞLİ FERHAN SULTAN KIZ",
+  "ORHANLAR MAHALLESİ":"EREĞLİ GÜLTEPE KIZ",
+  "ÖREN MAHALLESİ":"EREĞLİ FERHAN SULTAN KIZ",
+  "SARIKOKMAZ MAHALLESİ":"EREĞLİ GÜLTEPE KIZ",
+  "SÜLEYMANLAR MAHALLESİ":"EREĞLİ GÜLTEPE KIZ",
+  "TOPÇALI MAHALLESİ":"EREĞLİ FERHAN SULTAN KIZ",
+  "UZUNMEHMET MAHALLESİ":"EREĞLİ GÜLTEPE KIZ"
+};
+
+const ereğliErkekDiger=["EREĞLİ KIŞLA","EREĞLİ YEŞİLTEPE","EREĞLİ YILDIZ"];
+const ereğliKizDiger=["EREĞLİ GÜLTEPE KIZ","EREĞLİ FERHAN SULTAN KIZ"];
 
 const erkekDiger=["FENER","KARADENİZ","HİLMİYE DAİMİ","KİLİMLİ","KOZLU FATİH PROJE","KOZLU FATİH ÜNİ","ÇAYCUMA BEDİR"];
 const kizDiger=["KİLİMLİ HİSARTEPE KIZ","KOZLU VALİDE SULTAN KIZ","VALİDE SULTAN KIZ"];
@@ -706,9 +789,76 @@ function goStep6(){
     if(!il){document.getElementById("err-ilce").classList.add("show");document.getElementById("ilce").classList.add("invalid");return;}
     document.getElementById("err-ilce").classList.remove("show");document.getElementById("ilce").classList.remove("invalid");
     state.ilce=il;
-    state.kurum=c==="erkek"?(erkekIlceKurum[il]||il):(kizIlceKurum[il]||il);
+    if(il==="EREĞLİ"){
+      var em=document.getElementById("eregliMahalle").value;
+      if(!em){document.getElementById("err-eregliMahalle").classList.add("show");return;}
+      document.getElementById("err-eregliMahalle").classList.remove("show");
+      state.mahalle=em;
+      var diger=document.getElementById("eregliDigerKurum").value;
+      if(diger) state.kurum=diger;
+    } else {
+      state.kurum=c==="erkek"?(erkekIlceKurum[il]||il):(kizIlceKurum[il]||il);
+    }
   }
   goTo(6);
+}
+
+function onIlceChange(){
+  var il=document.getElementById("ilce").value;
+  var eregliWrap=document.getElementById("eregliMahalleWrap");
+  if(il==="EREĞLİ"){
+    eregliWrap.style.display="block";
+    var mahalleSel=document.getElementById("eregliMahalle");
+    var c=state.cinsiyet;
+    var erkekMahalleler=Object.keys(ereğliErkekMahalle);
+    var kizMahalleler=Object.keys(ereğliKizMahalle);
+    var mahalleler=c==="erkek"?erkekMahalleler:kizMahalleler;
+    mahalleSel.innerHTML="<option value=''>— Mahalle Seçiniz —</option>";
+    mahalleler.sort().forEach(function(m){mahalleSel.innerHTML+="<option>"+m+"</option>";});
+    document.getElementById("eregliKurumResult").classList.remove("show");
+    document.getElementById("eregliDigerWrap").style.display="none";
+  } else {
+    eregliWrap.style.display="none";
+  }
+}
+
+function showEregliKurum(){
+  var mahalle=document.getElementById("eregliMahalle").value;
+  if(!mahalle){document.getElementById("eregliKurumResult").classList.remove("show");return;}
+  var c=state.cinsiyet;
+  var sinif=state.sinif;
+  var kurum=c==="erkek"?ereğliErkekMahalle[mahalle]:ereğliKizMahalle[mahalle];
+  if(!kurum) kurum="Belirlenemedi";
+
+  if(state.konaklama==="yatılı"){
+    var grup=getSinifGrup(sinif);
+    var kural=c==="erkek"?erkekYatiliKural[kurum]:kizYatiliKural[kurum];
+    if(kural&&grup&&!kural[grup]){
+      state.konaklama="gündüzlü";
+      alert("⚠️ "+kurum+" kurumu bu sınıf için yatılı kaydı bulunmamaktadır. Gündüzlü olarak devam edilecektir.");
+    }
+  }
+
+  state.kurum=kurum;
+  state.mahalle=mahalle;
+  document.getElementById("eregliKurumName").textContent=kurum;
+  document.getElementById("eregliKurumSub").textContent=c==="erkek"?"Erkek Yurdu":"Kız Yurdu";
+  document.getElementById("eregliKurumResult").classList.add("show");
+
+  var dw=document.getElementById("eregliDigerWrap");
+  var ds=document.getElementById("eregliDigerKurum");
+  dw.style.display="block";
+  ds.innerHTML="<option value=''>— Hayır, önerilen kuruma gidiyorum —</option>";
+  var alternatifler=c==="erkek"?ereğliErkekDiger:ereğliKizDiger;
+  var sinifGrup=getSinifGrup(sinif);
+  alternatifler.filter(function(k){
+    if(k===kurum) return false;
+    if(state.konaklama==="yatılı"){
+      var kr=c==="erkek"?erkekYatiliKural[k]:kizYatiliKural[k];
+      if(!kr||!kr[sinifGrup]) return false;
+    }
+    return true;
+  }).forEach(function(k){ds.innerHTML+="<option value='"+k+"'>"+k+"</option>";});
 }
 
 function formatTel(input){

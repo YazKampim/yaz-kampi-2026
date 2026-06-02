@@ -305,7 +305,7 @@ hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0;
         <div class="kurum-result" id="kurum-result">
           <div class="kurum-label">🏫 Yönlendirildiğiniz Kurum</div>
           <div class="kurum-name" id="kurum-name">—</div>
-          <div class="kurum-sub" id="kurum-sub"></div>
+          <div class="kurum-sub" id="kurum-sub" style="display:none"></div>
         </div>
         <div id="diger-wrap" style="display:none">
           <div class="field">
@@ -431,40 +431,49 @@ hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0;
 
 <script>
 // ===== ERKEK MAHALLE → KURUM =====
+
+const erkekKizGunduzluKural={
+  "FENER":{234:true,567:true,8:true,912:true},
+  "KARADENİZ":{234:true,567:true,8:true,912:true},
+  "HİLMİYE":{234:true,567:true,8:true,912:true},
+  "KOZLU FATİH":{234:true,567:true,8:true,912:true},
+  "KOZLU FATİH ÜNİ":{234:true,567:true,8:true,912:true}
+};
+
 const erkekMahalle={
   "ASMA MAHALLESİ":"FENER",
-  "BAĞLIK MAHALLESİ":"HİLMİYE DAİMİ",
+  "BAĞLIK MAHALLESİ":"HİLMİYE",
   "BAHÇELİEVLER MAHALLESİ":"KARADENİZ",
   "BAŞTARLA MAHALLESİ":"FENER",
   "BEYTEPE MAHALLESİ":"KARADENİZ",
   "BİRLİK MAHALLESİ":"KARADENİZ",
-  "CELEPÇİOĞLU MAHALLESİ":"HİLMİYE DAİMİ",
+  "CELEPÇİOĞLU MAHALLESİ":"HİLMİYE",
   "CUMHURİYET MAHALLESİ":"KARADENİZ",
-  "ÇALCA MAHALLESİ":"HİLMİYE DAİMİ",
-  "ÇAMLIK MAHALLESİ":"HİLMİYE DAİMİ",
+  "ÇALCA MAHALLESİ":"HİLMİYE",
+  "ÇAMLIK MAHALLESİ":"HİLMİYE",
   "ÇAYDAMAR MAHALLESİ":"KARADENİZ",
   "ÇINARTEPE MAHALLESİ":"FENER",
   "DİLAVER MAHALLESİ":"FENER",
-  "ELVAN MAHALLESİ":"HİLMİYE DAİMİ",
+  "ELVAN MAHALLESİ":"HİLMİYE",
   "HAYAT MAHALLESİ":"KARADENİZ",
   "İNAĞZI MAHALLESİ":"KİLİMLİ",
   "İNCİVEZ MAHALLESİ":"KARADENİZ",
   "KADI MAHALLESİ":"FENER",
   "KARAELMAş MAHALLESİ":"KARADENİZ",
-  "KARAMANLAR MAHALLESİ":"HİLMİYE DAİMİ",
-  "KASIMLAR MAHALLESİ":"HİLMİYE DAİMİ",
+  "KARAMANLAR MAHALLESİ":"HİLMİYE",
+  "KASIMLAR MAHALLESİ":"HİLMİYE",
   "MERKEZ MAHALLESİ":"FENER",
   "MEŞRUTİYET MAHALLESİ":"FENER",
   "MİTHATPAŞA MAHALLESİ":"FENER",
-  "MURATLI MAHALLESİ":"HİLMİYE DAİMİ",
+  "MURATLI MAHALLESİ":"HİLMİYE",
   "ON TEMMUZ MAHALLESİ":"KARADENİZ",
-  "SATIKLI MAHALLESİ":"HİLMİYE DAİMİ",
-  "TASMACI MAHALLESİ":"HİLMİYE DAİMİ",
+  "SATIKLI MAHALLESİ":"HİLMİYE",
+  "TASMACI MAHALLESİ":"HİLMİYE",
   "TEPEBAŞI MAHALLESİ":"FENER",
   "TERAKKİ MAHALLESİ":"KARADENİZ",
   "YAYLA MAHALLESİ":"FENER",
-  "YENİ MAHALLESİ":"HİLMİYE DAİMİ",
-  "YEŞİL MAHALLESİ":"HİLMİYE DAİMİ"
+  "YENİ MAHALLESİ":"HİLMİYE",
+  "YEŞİL MAHALLESİ":"HİLMİYE"
 };
 
 // ===== KIZ MAHALLE → KURUM =====
@@ -519,10 +528,10 @@ const erkekYatiliKural={
   "EREĞLİ YILDIZ":{567:false,8:true,912:true},
   "FENER":{567:true,8:true,912:false},
   "GÖKÇEBEY":{567:true,8:true,912:true},
-  "HİLMİYE DAİMİ":{567:false,8:false,912:false},
+  "HİLMİYE":{567:false,8:false,912:false},
   "KARADENİZ":{567:false,8:true,912:true},
   "KİLİMLİ":{567:true,8:true,912:true},
-  "KOZLU FATİH PROJE":{567:true,8:true,912:false},
+  "KOZLU FATİH":{567:true,8:true,912:false},
   "KOZLU FATİH ÜNİ":{567:false,8:false,912:false},
   "ORMANLI YEŞİLMEŞE":{567:true,8:true,912:false},
   "PERŞEMBE YEŞİLBAHÇE":{567:true,8:true,912:false},
@@ -543,7 +552,7 @@ const kizYatiliKural={
   "VALİDE SULTAN KIZ":{567:true,8:true,912:false}
 };
 
-const sadecGunduzlu=["ÇAYCUMA BEDİR","HİLMİYE DAİMİ","KOZLU FATİH ÜNİ"];
+const sadecGunduzlu=["ÇAYCUMA BEDİR","HİLMİYE","KOZLU FATİH ÜNİ"];
 
 // İlçe → erkek kurum
 const erkekIlceKurum={
@@ -633,7 +642,7 @@ const ereğliKizMahalle={
 const ereğliErkekDiger=["EREĞLİ KIŞLA","EREĞLİ YEŞİLTEPE","EREĞLİ YILDIZ"];
 const ereğliKizDiger=["EREĞLİ GÜLTEPE KIZ","EREĞLİ FERHAN SULTAN KIZ"];
 
-const erkekDiger=["FENER","KARADENİZ","HİLMİYE DAİMİ","KİLİMLİ","KOZLU FATİH PROJE","KOZLU FATİH ÜNİ","ÇAYCUMA BEDİR"];
+const erkekDiger=["FENER","KARADENİZ","HİLMİYE","KİLİMLİ","KOZLU FATİH","KOZLU FATİH ÜNİ","ÇAYCUMA BEDİR"];
 const kizDiger=["KİLİMLİ HİSARTEPE KIZ","KOZLU VALİDE SULTAN KIZ","VALİDE SULTAN KIZ"];
 
 let state={currentStep:1,cinsiyet:"",sinif:0,konaklama:"",konum:"",mahalle:"",kurum:"",ilce:"",anneAdi:"",babaAdi:"",adiSoyadi:"",okul:"",babaTel:"",anneTel:"",adres:""};
@@ -756,7 +765,7 @@ function showKurum(){
   state.kurum=kurum;
   var sub=c==="erkek"?"Erkek Yurdu":"Kız Yurdu";
   document.getElementById("kurum-name").textContent=kurum;
-  document.getElementById("kurum-sub").textContent=sub;
+  // document.getElementById("kurum-sub").textContent=sub;
   document.getElementById("kurum-result").classList.add("show");
 
   var dw=document.getElementById("diger-wrap");
@@ -773,6 +782,18 @@ function showKurum(){
     }
     return true;
   }).forEach(function(k){ds.innerHTML+="<option value='"+k+"'>"+k+"</option>";});
+
+  // Kız gündüzlü ise erkek yurtlarını da ekle
+  if(c==="kiz"&&state.konaklama==="gündüzlü"){
+    var sinifGrupKiz=sinif<=4?"234":(sinif<=7?"567":(sinif===8?"8":"912"));
+    Object.keys(erkekKizGunduzluKural).forEach(function(k){
+      if(k===kurum) return;
+      var kural=erkekKizGunduzluKural[k];
+      if(kural&&kural[sinifGrupKiz]){
+        ds.innerHTML+="<option value='"+k+"'>"+k+"</option>";
+      }
+    });
+  }
 }
 
 function goStep6(){
@@ -842,7 +863,7 @@ function showEregliKurum(){
   state.kurum=kurum;
   state.mahalle=mahalle;
   document.getElementById("eregliKurumName").textContent=kurum;
-  document.getElementById("eregliKurumSub").textContent=c==="erkek"?"Erkek Yurdu":"Kız Yurdu";
+  // eregliKurumSub gizlendi
   document.getElementById("eregliKurumResult").classList.add("show");
 
   var dw=document.getElementById("eregliDigerWrap");
@@ -859,6 +880,18 @@ function showEregliKurum(){
     }
     return true;
   }).forEach(function(k){ds.innerHTML+="<option value='"+k+"'>"+k+"</option>";});
+
+  // Kız gündüzlü ise erkek yurtlarını da ekle
+  if(c==="kiz"&&state.konaklama==="gündüzlü"){
+    var sinifGrupKiz=sinif<=4?"234":(sinif<=7?"567":(sinif===8?"8":"912"));
+    Object.keys(erkekKizGunduzluKural).forEach(function(k){
+      if(k===kurum) return;
+      var kural=erkekKizGunduzluKural[k];
+      if(kural&&kural[sinifGrupKiz]){
+        ds.innerHTML+="<option value='"+k+"'>"+k+"</option>";
+      }
+    });
+  }
 }
 
 function formatTel(input){

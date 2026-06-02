@@ -295,7 +295,7 @@ hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0;
         <div class="kurum-result" id="kurum-result">
           <div class="kurum-label">🏫 Yönlendirildiğiniz Kurum</div>
           <div class="kurum-name" id="kurum-name">—</div>
-          <div class="kurum-sub" id="kurum-sub"></div>
+          <div class="kurum-sub" id="kurum-sub" style="display:none"></div>
         </div>
         <div id="diger-wrap" style="display:none">
           <div class="field">
@@ -403,6 +403,19 @@ hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0;
 
 <script>
 // ===== ERKEK MAHALLE → KURUM =====
+
+const erkekKizGunduzluKural={
+  "KOPUZLAR":{234:true,567:true,8:false,912:false},
+  "ÇAMLIYAYLA AHMEDİYE":{234:true,567:true,8:false,912:false},
+  "EMİRLER":{234:true,567:true,8:true,912:true},
+  "HÜSEYİN SATI EKE":{234:true,567:true,8:false,912:false},
+  "KILIÇARSLAN":{234:true,567:true,8:true,912:true},
+  "SADABAD":{234:true,567:true,8:false,912:false},
+  "SEYİT KAMİL BEY":{234:true,567:true,8:true,912:true},
+  "SOKU":{234:true,567:true,8:true,912:true},
+  "SÜLEYMANİYE":{234:true,567:true,8:true,912:true}
+};
+
 const erkekMahalle={
   "AKPINAR MAHALLESİ":"HÜSEYİN SATI EKE",
   "AKTAŞ MAHALLESİ":"HÜSEYİN SATI EKE",
@@ -528,6 +541,22 @@ const kizIlceKurum={
 };
 
 // Erkek alternatif kurumlar (farklı kurum seç)
+
+const kizYatiliKural={
+  "AKÇABEY KIZ":{567:true,8:true,912:true},
+  "BOLU FERHAN SULTAN KIZ":{567:true,8:false,912:false},
+  "DÖRTDİVAN KIZ":{567:true,8:true,912:false},
+  "GEREDE HAFİZE SULTAN KIZ":{567:true,8:true,912:false},
+  "GÖYNÜK KIZ":{567:true,8:true,912:false},
+  "HİLAL KIZ":{567:true,8:true,912:false},
+  "KARACASU KIZ":{567:true,8:true,912:false},
+  "MENGEN KIZ":{567:true,8:true,912:false},
+  "MUDURNU KIZ":{567:true,8:true,912:false},
+  "OKÇULAR KIZ":{567:true,8:true,912:false},
+  "SEBEN KIZ":{567:true,8:true,912:false},
+  "SULTANKÖY":{567:true,8:true,912:true}
+};
+
 const erkekDiger=["KOPUZLAR","HÜSEYİN SATI EKE","SOKU","SADABAD","KILIÇARSLAN","ÇAMLIYAYLA AHMEDİYE","EMİRLER","SEYİT KAMİL BEY","SÜLEYMANİYE"];
 const kizDiger=["HİLAL KIZ","BOLU FERHAN SULTAN KIZ","KARACASU KIZ","OKÇULAR KIZ","SULTANKÖY"];
 
@@ -567,8 +596,8 @@ function updateSinifInfo(){
   box.style.display="block";
   if(sinif<=4) box.innerHTML="ℹ️ 2, 3 ve 4. sınıf öğrencileri yalnızca <strong>Gündüzlü</strong> programa katılabilir.";
   else if(state.cinsiyet==="erkek"&&sinif>=8) box.innerHTML="ℹ️ Erkek 8-12. sınıflar il merkezinde <strong>Süleymaniye Yurdu</strong>na gündüzlü veya yatılı kayıt olabilir.";
-  else if(state.cinsiyet==="kiz"&&sinif===8) box.innerHTML="ℹ️ 8. sınıf kız öğrenciler yalnızca <strong>Karacasu Kız Yurdu</strong>na yatılı kayıt olabilir.";
-  else if(state.cinsiyet==="kiz"&&sinif>=9) box.innerHTML="ℹ️ 9-12. sınıf kız öğrenciler yalnızca <strong>Karacasu Kursu</strong>na gündüzlü kayıt olabilir.";
+  else if(state.cinsiyet==="kiz"&&sinif===8) box.innerHTML="ℹ️ 8. sınıf kız öğrenciler gündüzlü veya yatılı kayıt olabilir.";
+  else if(state.cinsiyet==="kiz"&&sinif>=9) box.innerHTML="ℹ️ 9-12. sınıf kız öğrenciler gündüzlü veya yatılı kayıt olabilir.";
   else box.innerHTML="✅ Bu sınıf için gündüzlü veya yatılı program seçilebilir.";
 }
 
@@ -579,8 +608,8 @@ function goStep3(){
   state.sinif=sinif;
   var c=state.cinsiyet;var opts=[];var info="";
   if(sinif<=4){opts=["Gündüzlü"];info="⚠️ 2, 3 ve 4. sınıf öğrencileri yalnızca <strong>Gündüzlü</strong> programa katılabilir.";}
-  else if(c==="kiz"&&sinif===8){opts=["Yatılı"];info="⚠️ 8. sınıf kız öğrenciler yalnızca <strong>Karacasu Kız Yurdu</strong>na yatılı kayıt olabilir.";}
-  else if(c==="kiz"&&sinif>=9){opts=["Gündüzlü"];info="⚠️ 9-12. sınıf kız öğrenciler yalnızca <strong>Karacasu Kursu</strong>na gündüzlü kayıt olabilir.";}
+  else if(c==="kiz"&&sinif===8){opts=["Gündüzlü","Yatılı"];info="ℹ️ 8. sınıf kız öğrenciler gündüzlü veya yatılı olarak kayıt olabilir.";}
+  else if(c==="kiz"&&sinif>=9){opts=["Gündüzlü","Yatılı"];info="ℹ️ 9-12. sınıf kız öğrenciler gündüzlü veya yatılı olarak kayıt olabilir.";}
   else{opts=["Gündüzlü","Yatılı"];info="✅ Gündüzlü veya yatılı programa katılabilirsiniz.";}
   document.getElementById("konaklama-info").innerHTML=info;
   var wrap=document.getElementById("konaklama-options");wrap.innerHTML="";
@@ -604,8 +633,7 @@ function goStep5(){
   document.getElementById("err-konum").classList.remove("show");
   state.konum=s.value;
   var sinif=state.sinif,c=state.cinsiyet;
-  if(c==="kiz"&&sinif===8){state.kurum="KARACASU KIZ";goTo(6);return;}
-  if(c==="kiz"&&sinif>=9){state.kurum="KARACASU KIZ";goTo(6);return;}
+  // Kız 8 ve 9-12 artık konum seçimine devam ediyor
   if(c==="erkek"&&sinif>=8&&s.value==="merkez"){state.kurum="SÜLEYMANİYE";goTo(6);return;}
   if(s.value==="merkez"){
     document.getElementById("mahalle-wrap").style.display="block";
@@ -649,11 +677,20 @@ function showKurum(){
   if(state.konaklama==="yatılı"&&yatiliAlternatif[kurum]){
     kurum=yatiliAlternatif[kurum];
   }
+  // Kız yatılı kural kontrolü
+  if(state.konaklama==="yatılı"&&c==="kiz"){
+    var grup=sinif<=7?"567":(sinif===8?"8":"912");
+    var kizKural=kizYatiliKural[kurum];
+    if(kizKural&&!kizKural[grup]){
+      state.konaklama="gündüzlü";
+      alert("⚠️ "+kurum+" kurumu bu sınıf için yatılı kaydı bulunmamaktadır. Gündüzlü olarak devam edilecektir.");
+    }
+  }
 
   state.kurum=kurum;
   var sub=c==="erkek"?"Erkek Yurdu":"Kız Yurdu";
   document.getElementById("kurum-name").textContent=kurum;
-  document.getElementById("kurum-sub").textContent=sub;
+  // document.getElementById("kurum-sub").textContent=sub;
   document.getElementById("kurum-result").classList.add("show");
 
   // Alternatif kurum listesi
@@ -664,10 +701,26 @@ function showKurum(){
   var alternatifler=c==="erkek"?erkekDiger:kizDiger;
   alternatifler.filter(function(k){
     if(k===kurum) return false;
-    // Yatılı ise sadece gündüzlü kurumları gösterme
     if(state.konaklama==="yatılı"&&yatiliOlmaz.includes(k)) return false;
     return true;
   }).forEach(function(k){ds.innerHTML+="<option value='"+k+"'>"+k+"</option>";});
+
+  // Kız yatılı için sadece yatılı alan kurumları göster
+  if(c==="kiz"&&state.konaklama==="yatılı"){
+    var grup2=sinif<=7?"567":(sinif===8?"8":"912");
+    // Alternatiflerden yatılı almayan kız yurtlarını filtrele zaten üstte yapıldı
+  }
+  // Kız gündüzlü ise erkek yurtlarını da ekle
+  if(c==="kiz"&&state.konaklama==="gündüzlü"){
+    var sinifGrupKiz=sinif<=4?"234":(sinif<=7?"567":(sinif===8?"8":"912"));
+    Object.keys(erkekKizGunduzluKural).forEach(function(k){
+      if(k===kurum) return;
+      var kural=erkekKizGunduzluKural[k];
+      if(kural&&kural[sinifGrupKiz]){
+        ds.innerHTML+="<option value='"+k+"'>"+k+"</option>";
+      }
+    });
+  }
 
   // Gündüzlü + Seyit Kamil mahalleleri → SEYİT KAMİL BEY alternatif ekle
   if(c==="erkek"&&state.konaklama==="gündüzlü"&&seytKamilMahalleler.includes(mahalle)){

@@ -345,7 +345,7 @@ hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0;
         <div class="kurum-result" id="kurum-result">
           <div class="kurum-label">🏫 Yönlendirildiğiniz Kurum</div>
           <div class="kurum-name" id="kurum-name">—</div>
-          <div class="kurum-sub" id="kurum-sub"></div>
+          <div class="kurum-sub" id="kurum-sub" style="display:none"></div>
         </div>
         <div id="diger-wrap" style="display:none">
           <div class="field">
@@ -453,6 +453,19 @@ hr.divider { border: none; border-top: 2px dashed var(--border); margin: 20px 0;
 
 <script>
 // ===== ERKEK MAHALLE → KURUM =====
+
+const erkekKizGunduzluKural={
+  "BEYKÖY":{234:true,567:true,8:false,912:false},
+  "DOĞANLI":{234:true,567:true,8:false,912:false},
+  "DÜZCE SADABAD PROJE":{234:true,567:true,8:false,912:false},
+  "DÜZCE SÜLEYMANİYE B BLOK":{234:true,567:true,8:true,912:true},
+  "DÜZKÖY":{234:true,567:true,8:true,912:true},
+  "İSABET DÜZCE PROJE":{234:true,567:true,8:true,912:false},
+  "KABALAK":{234:true,567:true,8:true,912:true},
+  "SARAY":{234:true,567:true,8:true,912:true},
+  "YENİMAHALLE":{234:true,567:true,8:false,912:false}
+};
+
 const erkekMahalle={
   "AĞAKÖYÜ MAHALLESİ":"DÜZCE SADABAD PROJE",
   "AKINLAR MAHALLESİ":"DÜZCE SADABAD PROJE",
@@ -788,7 +801,7 @@ function showKurum(){
   state.kurum=kurum;
   var sub=c==="erkek"?"Erkek Yurdu":"Kız Yurdu";
   document.getElementById("kurum-name").textContent=kurum;
-  document.getElementById("kurum-sub").textContent=sub;
+  // document.getElementById("kurum-sub").textContent=sub;
   document.getElementById("kurum-result").classList.add("show");
 
   var dw=document.getElementById("diger-wrap");
@@ -805,6 +818,18 @@ function showKurum(){
     }
     return true;
   }).forEach(function(k){ds.innerHTML+="<option value='"+k+"'>"+k+"</option>";});
+
+  // Kız gündüzlü ise erkek yurtlarını da ekle
+  if(c==="kiz"&&state.konaklama==="gündüzlü"){
+    var sinifGrupKiz=sinif<=4?"234":(sinif<=7?"567":(sinif===8?"8":"912"));
+    Object.keys(erkekKizGunduzluKural).forEach(function(k){
+      if(k===kurum) return;
+      var kural=erkekKizGunduzluKural[k];
+      if(kural&&kural[sinifGrupKiz]){
+        ds.innerHTML+="<option value='"+k+"'>"+k+"</option>";
+      }
+    });
+  }
 }
 
 function goStep6(){
@@ -863,7 +888,19 @@ function submitForm(){
 
   var ogrenciTel=document.getElementById("ogrenci-tel")?document.getElementById("ogrenci-tel").value:"";
   var bilgiAlinsin=document.getElementById("bilgi-alinsin")?document.getElementById("bilgi-alinsin").checked?"EVET":"":"";
-  var formData={cinsiyet:state.cinsiyet,sinif:state.sinif,konaklama:state.konaklama,konum:state.konum,mahalle:state.mahalle,ilce:state.ilce,kurum:state.kurum,anneAdi:state.anneAdi,babaAdi:state.babaAdi,adiSoyadi:state.adiSoyadi,okul:state.okul,babaTel:state.babaTel,anneTel:state.anneTel,adres:state.adres,ogrenciTel:ogrenciTel,bilgiAlinmakIstiyorum:bilgiAlinsin};
+  var formData={
+    cinsiyet:state.cinsiyet==="erkek"?"ERKEK":"KIZ",
+    sinif:state.sinif,
+    konaklama:state.konaklama==="yatılı"?"YATILI":"GÜNDÜZLÜ",
+    konum:state.konum==="merkez"?"İL MERKEZİ":"İLÇE",
+    mahalle:state.mahalle,ilce:state.ilce,kurum:state.kurum,
+    anneAdi:state.anneAdi,babaAdi:state.babaAdi,
+    adiSoyadi:state.adiSoyadi,okul:state.okul,
+    ogrenciTel:ogrenciTel,
+    babaTel:state.babaTel,anneTel:state.anneTel,
+    adres:state.adres,
+    bilgiAlinmakIstiyorum:bilgiAlinsin
+  };
   fetch("https://script.google.com/macros/s/AKfycbytqLF8rCN5QERtTaCoQPsEpCSrtzJoXhrIa-sXkxYcR6NeVls6wEvsjI8RhCCIAbGO/exec",{method:"POST",body:JSON.stringify(formData)}).catch(function(err){console.log(err);});
 
   var rows=[["Cinsiyet",state.cinsiyet==="erkek"?"Erkek":"Kız"],["Sınıf",state.sinif+". Sınıf"],["Program",state.konaklama==="gündüzlü"?"Gündüzlü":"Yatılı"],["Konum",state.konum==="merkez"?"Düzce İl Merkezi":"İlçe"]];

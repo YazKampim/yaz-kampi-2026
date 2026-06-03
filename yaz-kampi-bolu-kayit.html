@@ -808,12 +808,20 @@ function submitForm(){
   if(!valid) return;
 
   // Google Sheets'e gönder
+  var ogrenciTel=document.getElementById("ogrenci-tel")?document.getElementById("ogrenci-tel").value:"";
+  var bilgiAlinsin=document.getElementById("bilgi-alinsin")&&document.getElementById("bilgi-alinsin").checked?"EVET":"";
   var formData={
-    cinsiyet:state.cinsiyet,sinif:state.sinif,konaklama:state.konaklama,
-    konum:state.konum,mahalle:state.mahalle,ilce:state.ilce,kurum:state.kurum,
+    cinsiyet:state.cinsiyet==="erkek"?"ERKEK":"KIZ",
+    sinif:state.sinif,
+    konaklama:state.konaklama==="yatılı"?"YATILI":"GÜNDÜZLÜ",
+    konum:state.konum==="merkez"?"İL MERKEZİ":"İLÇE",
+    mahalle:state.mahalle,ilce:state.ilce,kurum:state.kurum,
     anneAdi:state.anneAdi,babaAdi:state.babaAdi,
     adiSoyadi:state.adiSoyadi,okul:state.okul,
-    babaTel:state.babaTel,anneTel:state.anneTel,adres:state.adres
+    ogrenciTel:ogrenciTel,
+    babaTel:state.babaTel,anneTel:state.anneTel,
+    adres:state.adres,
+    bilgiAlinmakIstiyorum:bilgiAlinsin
   };
   fetch("https://script.google.com/macros/s/AKfycby12VkjT7wDXrotSDAKTNo9nVE5NckpU3bpVPswNfPiYiUhP48LniIOrQETrWCDOUYz/exec",{
     method:"POST",body:JSON.stringify(formData)

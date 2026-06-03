@@ -932,7 +932,19 @@ function submitForm(){
   var ogrenciTel=document.getElementById("ogrenci-tel")?document.getElementById("ogrenci-tel").value:"";
   var bilgiAlinsin=document.getElementById("bilgi-alinsin")?document.getElementById("bilgi-alinsin").checked?"EVET":"":"";
 
-  var formData={cinsiyet:state.cinsiyet,sinif:state.sinif,konaklama:state.konaklama,konum:state.konum,mahalle:state.mahalle,ilce:state.ilce,kurum:state.kurum,anneAdi:state.anneAdi,babaAdi:state.babaAdi,adiSoyadi:state.adiSoyadi,okul:state.okul,ogrenciTel:ogrenciTel,babaTel:state.babaTel,anneTel:state.anneTel,adres:state.adres,bilgiAlinmakIstiyorum:bilgiAlinsin};
+  var formData={
+    cinsiyet:state.cinsiyet==="erkek"?"ERKEK":"KIZ",
+    sinif:state.sinif,
+    konaklama:state.konaklama==="yatılı"?"YATILI":"GÜNDÜZLÜ",
+    konum:state.konum==="merkez"?"İL MERKEZİ":"İLÇE",
+    mahalle:state.mahalle,ilce:state.ilce,kurum:state.kurum,
+    anneAdi:state.anneAdi,babaAdi:state.babaAdi,
+    adiSoyadi:state.adiSoyadi,okul:state.okul,
+    ogrenciTel:ogrenciTel,
+    babaTel:state.babaTel,anneTel:state.anneTel,
+    adres:state.adres,
+    bilgiAlinmakIstiyorum:bilgiAlinsin
+  };
 
   fetch("https://script.google.com/macros/s/AKfycbyRYTT_6iE5IBb_xEo290mwNRC02wlOZz3LAZUDN-FddCuL7a6k2YUo2leqZai5YwJP/exec",{method:"POST",body:JSON.stringify(formData)}).catch(function(err){console.log(err);});
 

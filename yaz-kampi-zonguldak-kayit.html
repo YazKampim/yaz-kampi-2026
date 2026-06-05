@@ -460,7 +460,8 @@ const erkekKizGunduzluKural={
   "KARADENİZ":{234:true,567:true,8:true,912:true},
   "HİLMİYE":{234:true,567:true,8:true,912:true},
   "KOZLU FATİH":{234:true,567:true,8:true,912:true},
-  "KOZLU FATİH ÜNİ":{234:true,567:true,8:true,912:true}
+  "KOZLU FATİH ÜNİ":{234:true,567:true,8:true,912:true},
+  "KOZLU VALİDE SULTAN KIZ":{234:true,567:true,8:true,912:true}
 };
 
 const erkekMahalle={
@@ -604,7 +605,9 @@ const erkekYatiliKural={
   "KOZLU FATİH ÜNİ":{567:false,8:false,912:false},
   "ORMANLI YEŞİLMEŞE":{567:true,8:true,912:false},
   "PERŞEMBE YEŞİLBAHÇE":{567:true,8:true,912:false},
-  "SALTUKOVA":{567:true,8:true,912:false}
+  "SALTUKOVA":{567:true,8:true,912:false},
+  "KOZLU FATİH":{567:true,8:false,912:false},
+  "KOZLU FATİH ÜNİ":{567:false,8:false,912:false}
 };
 
 const kizYatiliKural={
@@ -618,7 +621,8 @@ const kizYatiliKural={
   "KİLİMLİ HİSARTEPE KIZ":{567:true,8:true,912:false},
   "KOZLU VALİDE SULTAN KIZ":{567:true,8:true,912:false},
   "PERŞEMBE KIZ":{567:true,8:true,912:false},
-  "VALİDE SULTAN KIZ":{567:true,8:true,912:false}
+  "VALİDE SULTAN KIZ":{567:true,8:true,912:false},
+  "KOZLU VALİDE SULTAN KIZ":{567:true,8:true,912:false}
 };
 
 const sadecGunduzlu=["ÇAYCUMA BEDİR","HİLMİYE","KOZLU FATİH ÜNİ"];
@@ -633,7 +637,8 @@ const erkekIlceKurum={
   "KİLİMLİ":"KİLİMLİ",
   "ORMANLI":"ORMANLI YEŞİLMEŞE",
   "PERŞEMBE":"PERŞEMBE YEŞİLBAHÇE",
-  "SALTUKOVA":"SALTUKOVA"
+  "SALTUKOVA":"SALTUKOVA",
+  "KOZLU":"KOZLU FATİH"
 };
 
 const kizIlceKurum={
@@ -643,7 +648,8 @@ const kizIlceKurum={
   "EREĞLİ":"EREĞLİ FERHAN SULTAN KIZ",
   "GÖKÇEBEY":"GÖKÇEBEY ESENTEPE KIZ",
   "KİLİMLİ":"KİLİMLİ HİSARTEPE KIZ",
-  "PERŞEMBE":"PERŞEMBE KIZ"
+  "PERŞEMBE":"PERŞEMBE KIZ",
+  "KOZLU":"KOZLU VALİDE SULTAN KIZ"
 };
 
 const ereğliErkekMahalle={
@@ -803,8 +809,8 @@ function goStep5(){
     document.getElementById("step5-desc").textContent="Yaz kampına katılmak istediğiniz ilçeyi seçiniz.";
     var ilceSel=document.getElementById("ilce");
     ilceSel.innerHTML="<option value=''>— İlçe Seçiniz —</option>";
-    var erkekIlceler=["ALAPLI","ÇAYCUMA","DEVREK","EREĞLİ","GÖKÇEBEY","KİLİMLİ","ORMANLI","PERŞEMBE","SALTUKOVA"];
-    var kizIlceler=["ALAPLI","ÇAYCUMA","DEVREK","EREĞLİ","GÖKÇEBEY","KİLİMLİ","PERŞEMBE"];
+    var erkekIlceler=["ALAPLI","ÇAYCUMA","DEVREK","EREĞLİ","GÖKÇEBEY","KİLİMLİ","KOZLU","ORMANLI","PERŞEMBE","SALTUKOVA"];
+    var kizIlceler=["ALAPLI","ÇAYCUMA","DEVREK","EREĞLİ","GÖKÇEBEY","KİLİMLİ","KOZLU","PERŞEMBE"];
     var ilceler=state.cinsiyet==="erkek"?erkekIlceler:kizIlceler;
     ilceler.forEach(function(il){ilceSel.innerHTML+="<option>"+il+"</option>";});
     document.getElementById("ilce-info").style.display="block";

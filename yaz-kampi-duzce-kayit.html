@@ -1297,8 +1297,8 @@ function submitForm(){
   var ogrenciTel=document.getElementById("ogrenci-tel")?document.getElementById("ogrenci-tel").value:"";
   var bilgiAlinsin=document.getElementById("bilgi-alinsin")?document.getElementById("bilgi-alinsin").checked?"EVET":"":"";
   var formData={
-    konaklama:state.konaklama==="yatılı"?"YATILI":"GÜNDÜZLÜ",
-    konum:state.konum==="merkez"?"İL MERKEZİ":"İLÇE",
+    konaklama:state.konaklama==="yatılı"?"YATILI":(state.konaklama==="gündüzlü"?"GÜNDÜZLÜ":"GÜNDÜZLÜ"),
+    konum:state.konum==="merkez"?"İL MERKEZİ":(state.konum==="ilce"?"İLÇE":"İL MERKEZİ"),
     mahalle:state.mahalle||"",
     ilce:state.ilce||"",
     kurum:state.kurum||"",

@@ -607,7 +607,10 @@ const erkekYatiliKural={
   "PERŞEMBE YEŞİLBAHÇE":{567:true,8:true,912:false},
   "SALTUKOVA":{567:true,8:true,912:false},
   "KOZLU FATİH":{567:true,8:false,912:false},
-  "KOZLU FATİH ÜNİ":{567:false,8:false,912:false}
+  "KOZLU FATİH ÜNİ":{567:false,8:false,912:false},
+  "KARAPINAR":{567:true,8:true,912:false},
+  "ÇAYDEĞİRMENİ":{567:true,8:true,912:false},
+  "EĞERCİ":{567:true,8:true,912:false}
 };
 
 const kizYatiliKural={
@@ -638,7 +641,10 @@ const erkekIlceKurum={
   "ORMANLI":"ORMANLI YEŞİLMEŞE",
   "PERŞEMBE":"PERŞEMBE YEŞİLBAHÇE",
   "SALTUKOVA":"SALTUKOVA",
-  "KOZLU":"KOZLU FATİH"
+  "KOZLU":"KOZLU FATİH",
+  "KARAPINAR":"KARAPINAR",
+  "ÇAYDEĞİRMENİ":"ÇAYDEĞİRMENİ",
+  "EĞERCİ":"EĞERCİ"
 };
 
 const kizIlceKurum={
@@ -649,7 +655,10 @@ const kizIlceKurum={
   "GÖKÇEBEY":"GÖKÇEBEY ESENTEPE KIZ",
   "KİLİMLİ":"KİLİMLİ HİSARTEPE KIZ",
   "PERŞEMBE":"PERŞEMBE KIZ",
-  "KOZLU":"KOZLU VALİDE SULTAN KIZ"
+  "KOZLU":"KOZLU VALİDE SULTAN KIZ",
+  "KARAPINAR":"KARAPINAR",
+  "ÇAYDEĞİRMENİ":"ÇAYDEĞİRMENİ",
+  "EĞERCİ":"EĞERCİ"
 };
 
 const ereğliErkekMahalle={
@@ -809,8 +818,8 @@ function goStep5(){
     document.getElementById("step5-desc").textContent="Yaz kampına katılmak istediğiniz ilçeyi seçiniz.";
     var ilceSel=document.getElementById("ilce");
     ilceSel.innerHTML="<option value=''>— İlçe Seçiniz —</option>";
-    var erkekIlceler=["ALAPLI","ÇAYCUMA","DEVREK","EREĞLİ","GÖKÇEBEY","KİLİMLİ","KOZLU","ORMANLI","PERŞEMBE","SALTUKOVA"];
-    var kizIlceler=["ALAPLI","ÇAYCUMA","DEVREK","EREĞLİ","GÖKÇEBEY","KİLİMLİ","KOZLU","PERŞEMBE"];
+    var erkekIlceler=["ALAPLI","ÇAYCUMA","ÇAYDEĞİRMENİ","DEVREK","EĞERCİ","EREĞLİ","GÖKÇEBEY","KARAPıNAR","KİLİMLİ","KOZLU","ORMANLI","PERŞEMBE","SALTUKOVA"];
+    var kizIlceler=["ALAPLI","ÇAYCUMA","ÇAYDEĞİRMENİ","DEVREK","EĞERCİ","EREĞLİ","GÖKÇEBEY","KARAPıNAR","KİLİMLİ","KOZLU","PERŞEMBE"];
     var ilceler=state.cinsiyet==="erkek"?erkekIlceler:kizIlceler;
     ilceler.forEach(function(il){ilceSel.innerHTML+="<option>"+il+"</option>";});
     document.getElementById("ilce-info").style.display="block";
@@ -894,6 +903,12 @@ function goStep6(){
       if(diger) state.kurum=diger;
     } else {
       state.kurum=c==="erkek"?(erkekIlceKurum[il]||il):(kizIlceKurum[il]||il);
+      // Belde kız yatılı kontrolü
+      var kizYatiliOlmazIlce=["KARAPINAR","ÇAYDEĞİRMENİ","EĞERCİ"];
+      if(c==="kiz"&&kizYatiliOlmazIlce.includes(il)&&state.konaklama==="yatılı"){
+        state.konaklama="gündüzlü";
+        alert("⚠️ "+il+" beldesinde kız yatılı kaydı bulunmamaktadır. Gündüzlü olarak devam edilecektir.");
+      }
     }
   }
   goTo(6);

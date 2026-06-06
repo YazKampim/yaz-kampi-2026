@@ -1297,20 +1297,20 @@ function submitForm(){
   var ogrenciTel=document.getElementById("ogrenci-tel")?document.getElementById("ogrenci-tel").value:"";
   var bilgiAlinsin=document.getElementById("bilgi-alinsin")&&document.getElementById("bilgi-alinsin").checked?"EVET":"";
   var formData={
-    cinsiyet:state.cinsiyet==="erkek"?"ERKEK":"KIZ",
-    sinif:state.sinif,
     konaklama:state.konaklama==="yatılı"?"YATILI":"GÜNDÜZLÜ",
     konum:state.konum==="merkez"?"İL MERKEZİ":"İLÇE",
     mahalle:state.mahalle||"",
     ilce:state.ilce||"",
     kurum:state.kurum||"",
-    anneAdi:state.anneAdi||"",
-    babaAdi:state.babaAdi||"",
+    cinsiyet:state.cinsiyet==="erkek"?"ERKEK":"KIZ",
     adiSoyadi:state.adiSoyadi,
+    sinif:state.sinif,
     okul:state.okul,
     ogrenciTel:ogrenciTel,
-    babaTel:state.babaTel,
+    anneAdi:state.anneAdi||"",
     anneTel:state.anneTel,
+    babaAdi:state.babaAdi||"",
+    babaTel:state.babaTel,
     adres:state.adres,
     bilgiAlinmakIstiyorum:bilgiAlinsin
   };

@@ -1314,6 +1314,7 @@ function submitForm(){
     adres:state.adres,
     bilgiAlinmakIstiyorum:bilgiAlinsin
   };
+  console.log("FORMDATA:", JSON.stringify(formData));
   fetch("https://script.google.com/macros/s/AKfycbytqLF8rCN5QERtTaCoQPsEpCSrtzJoXhrIa-sXkxYcR6NeVls6wEvsjI8RhCCIAbGO/exec",{method:"POST",body:JSON.stringify(formData)}).catch(function(err){console.log(err);});
 
   var rows=[["Cinsiyet",state.cinsiyet==="erkek"?"Erkek":"Kız"],["Sınıf",state.sinif+". Sınıf"],["Program",state.konaklama==="gündüzlü"?"Gündüzlü":"Yatılı"],["Konum",state.konum==="merkez"?"Düzce İl Merkezi":"İlçe"]];

@@ -1295,29 +1295,35 @@ function submitForm(){
   if(!valid) return;
 
   var ogrenciTel=document.getElementById("ogrenci-tel")?document.getElementById("ogrenci-tel").value:"";
-  var bilgiAlinsin=document.getElementById("bilgi-alinsin")?document.getElementById("bilgi-alinsin").checked?"EVET":"":"";
+  var bilgiAlinsin=document.getElementById("bilgi-alinsin")&&document.getElementById("bilgi-alinsin").checked?"EVET":"";
   var formData={
-    konaklama:state.konaklama==="yatılı"?"YATILI":(state.konaklama==="gündüzlü"?"GÜNDÜZLÜ":"GÜNDÜZLÜ"),
-    konum:state.konum==="merkez"?"İL MERKEZİ":(state.konum==="ilce"?"İLÇE":"İL MERKEZİ"),
+    cinsiyet:state.cinsiyet==="erkek"?"ERKEK":"KIZ",
+    sinif:state.sinif,
+    konaklama:state.konaklama==="yatılı"?"YATILI":"GÜNDÜZLÜ",
+    konum:state.konum==="merkez"?"İL MERKEZİ":"İLÇE",
     mahalle:state.mahalle||"",
     ilce:state.ilce||"",
     kurum:state.kurum||"",
-    cinsiyet:state.cinsiyet==="erkek"?"ERKEK":"KIZ",
+    anneAdi:state.anneAdi||"",
+    babaAdi:state.babaAdi||"",
     adiSoyadi:state.adiSoyadi,
-    sinif:state.sinif,
     okul:state.okul,
     ogrenciTel:ogrenciTel,
-    anneAdi:state.anneAdi||"",
-    anneTel:state.anneTel,
-    babaAdi:state.babaAdi||"",
     babaTel:state.babaTel,
+    anneTel:state.anneTel,
     adres:state.adres,
     bilgiAlinmakIstiyorum:bilgiAlinsin
   };
-  console.log("FORMDATA:", JSON.stringify(formData));
-  fetch("https://script.google.com/macros/s/AKfycbytqLF8rCN5QERtTaCoQPsEpCSrtzJoXhrIa-sXkxYcR6NeVls6wEvsjI8RhCCIAbGO/exec",{method:"POST",body:JSON.stringify(formData)}).catch(function(err){console.log(err);});
+  fetch("https://script.google.com/macros/s/AKfycbytqLF8rCN5QERtTaCoQPsEpCSrtzJoXhrIa-sXkxYcR6NeVls6wEvsjI8RhCCIAbGO/exec",{
+    method:"POST",body:JSON.stringify(formData)
+  }).catch(function(err){console.log(err);});
 
-  var rows=[["Cinsiyet",state.cinsiyet==="erkek"?"Erkek":"Kız"],["Sınıf",state.sinif+". Sınıf"],["Program",state.konaklama==="gündüzlü"?"Gündüzlü":"Yatılı"],["Konum",state.konum==="merkez"?"Düzce İl Merkezi":"İlçe"]];
+  var rows=[
+    ["Cinsiyet",state.cinsiyet==="erkek"?"Erkek":"Kız"],
+    ["Sınıf",state.sinif+". Sınıf"],
+    ["Program",state.konaklama==="gündüzlü"?"Gündüzlü":"Yatılı"],
+    ["Konum",state.konum==="merkez"?"Düzce İl Merkezi":"İlçe"]
+  ];
   if(state.mahalle) rows.push(["Mahalle",state.mahalle]);
   if(state.ilce) rows.push(["İlçe",state.ilce]);
   if(state.kurum) rows.push(["Kurum",state.kurum]);
@@ -1325,7 +1331,9 @@ function submitForm(){
   if(state.anneAdi) rows.push(["Anne Adı",state.anneAdi]);
   if(state.babaAdi) rows.push(["Baba Adı",state.babaAdi]);
   rows.push(["Okul",state.okul],["Baba Tel",state.babaTel],["Anne Tel",state.anneTel]);
-  document.getElementById("summary-table").innerHTML=rows.map(function(r){return '<div class="summary-row"><span class="s-label">'+r[0]+'</span><span class="s-val">'+r[1]+"</span></div>";}).join("");
+  document.getElementById("summary-table").innerHTML=rows.map(function(r){
+    return '<div class="summary-row"><span class="s-label">'+r[0]+'</span><span class="s-val">'+r[1]+"</span></div>";
+  }).join("");
 
   var sn=5;
   var timer=setInterval(function(){

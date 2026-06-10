@@ -897,7 +897,7 @@ const erkekYatiliKural={
   "DÜZKÖY":{567:true,8:true,912:true},
   "GÖLYAKA":{567:true,8:true,912:true},
   "GÜMÜŞOVA":{567:true,8:true,912:true},
-  "SADABAD":{567:false,8:false,912:false},
+  "SADABAD":{567:true,8:true,912:false},
   "KABALAK":{567:true,8:false,912:false},
   "KAYNAŞLİ FATİH":{567:true,8:true,912:true},
   "SARAY":{567:false,8:true,912:true},
@@ -1059,9 +1059,10 @@ function showKurum(){
     if(kural&&grup&&!kural[grup]){
       var yeniKurum=kurum;
       if(c==="erkek"){
-        if(kurum==="SARAY") yeniKurum="SADABAD";
-        else if(grup==="567") yeniKurum="BEYKÖY";
+        if(kurum==="SARAY"&&(grup==="567"||grup==="8")) yeniKurum="SADABAD";
+        else if(grup==="567") yeniKurum="SADABAD";
         else if(grup==="8") yeniKurum="SADABAD";
+        else if(grup==="912") yeniKurum="SARAY";
         else yeniKurum="SADABAD";
       } else {
         if(grup==="567") yeniKurum="KONURALP";

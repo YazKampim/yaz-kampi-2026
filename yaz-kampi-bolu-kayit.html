@@ -897,6 +897,11 @@ function showKurum(){
   var kurum=c==="erkek"?erkekMahalle[mahalle]:kizMahalle[mahalle];
   if(!kurum) kurum="Belirlenemedi";
 
+  // SOKU mahallesi + gündüzlü kız → SOKU önerilir, kız yurtları alternatif olur
+  if(c==="kiz"&&state.konaklama==="gündüzlü"&&erkekMahalle[mahalle]==="SOKU"){
+    kurum="SOKU";
+  }
+
   // Çaydurt + yatılı → SOKU
   if(mahalle==="ÇAYDURT MAHALLESİ"&&state.konaklama==="yatılı"){
     kurum="SOKU";
